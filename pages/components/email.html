@@ -1,0 +1,28 @@
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script> 
+                <script type="text/javascript"
+                        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+                </script>
+                <script type="text/javascript">
+                    function sendMail(event) {
+                        event.preventDefault(); // ป้องกันการโหลดหน้าเว็บใหม่
+                        let parms = {
+                            subject: document.getElementById("subject").value,
+                            email: document.getElementById("email").value,
+                            name: document.getElementById("name").value,
+                            message: document.getElementById("message").value,
+                        }
+                    
+                        emailjs.init({
+                            publicKey: "QOtzQR-DwANTtEMz9"
+                        });
+                    
+                        emailjs.send('service_zaw2kwb', 'template_o88y5un', parms)
+                            .then(function(response) {
+                                alert("การส่งอีเมลสำเร็จ");
+                                console.log("Email ถูกส่ง: ", response);
+                            }, function(error) {
+                                alert("เกิดข้อผิดพลาดในการส่งอีเมล: " + JSON.stringify(error));
+                                console.log("เกิดข้อผิดพลาดในการส่งอีเมล: ", error);
+                            });
+                    }     
+                 </script>

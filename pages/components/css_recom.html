@@ -1,0 +1,87 @@
+<style>
+    body.bodydark{
+        background-color: #141719 !important; 
+    }
+    p.p1{
+        color: #fff !important;
+    }
+    p.p2{
+        color: #39A5F3 !important;
+        font-size: 35px;
+        text-align: "center";
+    }
+    .gridthree{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
+        grid-gap: 1px; /* Gap between grid items */
+    }
+    .gridthree-item {
+        padding: 3px;
+        text-align: center;
+    }
+    .gridtwo{
+        display: grid;
+        grid-template-columns: repeat(2, 0.3fr); /* 3 columns with equal width */
+        grid-gap: 1px; /* Gap between grid items */
+        position: relative; /* เปลี่ยนเป็น relative เพื่อให้ค่า right มีผล */
+        left: 220px; /* ย้ายกริดไปทางขวา 100px */
+    }
+    .gridtwo-item {
+        padding: 3px;
+        text-align: center;
+    }
+    .gridone{
+        display: grid;
+        grid-template-columns: repeat(2, 0.3fr); /* 3 columns with equal width */
+        grid-gap: 1px; /* Gap between grid items */
+        position: relative; /* เปลี่ยนเป็น relative เพื่อให้ค่า right มีผล */
+        left: 400px; /* ย้ายกริดไปทางขวา 100px */
+    }
+    .gridone-item {
+        padding: 3px;
+        text-align: center;
+    }
+    .gridfive{
+        display: grid;
+        grid-template-columns: repeat(3, 0.25fr); /* 3 columns with equal width */
+        grid-template-rows: repeat(2, 0.25fr);
+        grid-gap: 25px; /* Gap between grid items */
+        justify-content: center;
+        align-items: center;
+    }
+    .gridfive-item {
+        padding: 3px;
+        text-align: center;
+    }
+    .img:hover {
+        transform: scale(2) !important; /* ขยายภาพขึ้น 20% เมื่อชี้ที่ภาพ */
+    }
+</style>
+<script>
+    function goBack() {
+      window.history.back();
+    }
+    function zoomIn(element) {
+        element.style.transform = "scale(1.2)"; /* ขยายขนาดภาพเมื่อ hover */
+    }
+
+    function zoomOut(element) {
+        element.style.transform = "scale(1)"; /* ย่อขนาดภาพเมื่อไม่ hover */
+    }
+
+   
+    function callRule(ruleName) {
+        fetch('/' + ruleName)  // เรียกใช้งานเมธอดด้วยการเรียกหน้าเว็บโดยตรง
+            .then(response => {
+                if (response.ok) {
+                    console.log('Rule called successfully');
+                } else {
+                    console.error('Failed to call rule');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+    
+</script>

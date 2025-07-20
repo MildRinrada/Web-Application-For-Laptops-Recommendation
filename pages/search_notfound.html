@@ -1,0 +1,102 @@
+<!doctype html>
+<!--
+	The7 by TEMPLATE STOCK
+	templatestock.co @templatestock
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>แสดงรายการแล็ปท็อปยี่ห้อ Lenovo</title>
+        
+        <!-- CSS -->
+        {% include 'components/css2.html' %}
+        </head>
+        <body id="home">
+            <!-- Header -->
+            <header id="top-header" class="header-home">
+                {% include 'components/head.html' %}
+                </div>  
+            </header>
+            <!-- End Header -->
+
+            <!-- Parallax Section -->
+            {% include 'components/parallax.html' %} 
+            <!-- End Parallax Section -->
+
+            <!-- เส้นโค้ง -->
+            <svg  id="services" href="#services" class="curveUpColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M0 100 C 20 0 50 0 100 100 Z"></path>
+            </svg>
+
+            <!-- แสดงรายการแล็ปท็อปยี่ห้อ Lenovo -->
+            <div>
+                <section class="grid grid-pad services">
+                    <p style = "color: #141719; text-align: left"><a href="http://127.0.0.1:5000/" class= "a2">หน้าหลัก</a> > ผลของการค้นหา</p>
+                    <!-- เรียงลำดับราคา -->
+                    <div class="dropdown-container">
+
+                        <p style="color: #141719; position: relative; bottom: -5px">เรียงลำดับราคาโดย</p>
+
+                        <div>
+
+                            <form>
+
+                                <select style ="font-size: 14px" class="dropdown-content" name="sort" id="sort" onchange="handleChange(this)">
+                                    <option value="default">ค่าตั้งต้น</option>
+                                    <option value="lowsort">ราคาถูกมาก - แพงมาก</option>
+                                    <option value="expensivesort">ราคาแพงมาก - ถูกมาก</option>
+                                </select>
+
+                                <br><br>
+                            </form>
+
+                        </div>
+                    </div>
+
+                     <!-- ส่วนกรองและแสดงรายการแล็ปท็อป -->
+                    <div style="display: grid; align-items: start; grid-template-columns: 300px 1080px;">
+                        <!-- ส่วนกรอง -->
+                        <div>
+                            <div style="text-align: left; color: #141719;">
+
+                                <p style="font-size: 22px; font-weight: bold;">กรองข้อมูลแล็ปท็อป</p>
+
+                                <br>
+                                <!-- กรองแบรนด์ -->
+                                {% include 'components/filter_brand.html' %}
+                            </div>
+                        </div>
+                        <!-- End ส่วนกรอง -->
+                        <div style="text-align: left;">
+                            <br>
+                            <h1 style="color: #787878;">ไม่ค้นพบข้อมูลแล็ปท็อปที่คุณค้นหา</h1>
+                            <p style="color: #787878;"><b>การไม่ค้นพบข้อมูลแล็ปท็อป อาจเกิดจากสาเหตุหลายประการ ดังนี้</b><br>
+                                <br><b>- ชื่อหรือคำค้นหาไม่ถูกต้อง:</b> ตรวจสอบให้แน่ใจว่าคุณได้ป้อนชื่อหรือคำค้นหาที่ถูกต้องและเข้าใจได้อย่างชัดเจน อาจจะต้อง<br>ลองคำค้นหาอื่น ๆ หรือตรวจสอบความถูกต้องของสะกดคำ
+                                <br><b>- ข้อมูลไม่อยู่ในหน้านี้:</b> บางครั้งข้อมูลที่คุณกำลังมองหาอาจไม่ได้อยู่ในหน้าที่คุณกำลังค้นหา ควรตรวจสอบว่าข้อมูลที่คุณต้องการ<br>ได้เลือกกรองข้อมูลถูกต้องหรือไม่</p>
+
+
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- End Services Section -->
+            <br>
+                
+
+                <div class="loader-overlay">
+                    <div class="loader">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+
+              <!-- JS -->
+              {% include 'components/js.html' %}
+            </body>
+        </html>

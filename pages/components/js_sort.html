@@ -1,0 +1,21 @@
+<script>
+    // เมื่อหน้าเว็บโหลดเสร็จ ให้ตรวจสอบว่ามีค่าใน local storage หรือไม่
+    document.addEventListener("DOMContentLoaded", function () {
+        var sortSelect = document.getElementById("sort");
+        var lastSelectedOption = localStorage.getItem("lastSelectedOption");
+        if (lastSelectedOption) {
+            sortSelect.value = lastSelectedOption; // เซ็ตค่าของ select เป็นค่าที่เก็บไว้ล่าสุดใน local storage
+        }
+    });
+
+    function handleChange(selectObject) {
+        var sortOption = selectObject.value; // รับค่าที่เลือกจาก Dropdown
+        var form = selectObject.parentElement; // หาแบบฟอร์มที่ประกอบอยู่กับ Dropdown
+        form.submit(); // ส่งแบบฟอร์ม
+
+        // ตรวจสอบว่าเราใช้ localStorage ได้หรือไม่
+        if (typeof(Storage) !== "undefined") {
+            localStorage.setItem("lastSelectedOption", sortOption); // เก็บค่าที่ถูกเลือกไว้ใน local storage
+        }
+    }
+</script>

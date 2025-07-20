@@ -1,0 +1,263 @@
+<!doctype html>
+<!--
+	The7 by TEMPLATE STOCK
+	templatestock.co @templatestock
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>แสดงรายการแล็ปท็อปยี่ห้อ Dell</title>
+        
+        <!-- CSS -->
+        {% include 'components/css2.html' %}
+        </head>
+        <body id="home">
+            <!-- Header -->
+            <header id="top-header" class="header-home">
+                {% include 'components/head.html' %}
+            </header>
+            <!-- End Header -->
+
+            <!-- Parallax Section -->
+            {% include 'components/parallax.html' %} 
+            <!-- End Parallax Section -->
+
+            <!-- เส้นโค้ง -->
+            <svg  id="services"  href="#services" class="curveUpColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M0 100 C 20 0 50 0 100 100 Z"></path>
+            </svg>
+
+            <!-- แสดงรายการแล็ปท็อปยี่ห้อ Acer -->
+            <div>
+                <section class="grid grid-pad services">
+                    <p style = "color: #141719; text-align: left"><a href="http://127.0.0.1:5000/" class= "a2">หน้าหลัก</a> > แสดงรายการแล็ปท็อปยี่ห้อ Dell</p>
+                    <!-- เรียงลำดับราคา -->
+                    <div class="dropdown-container">
+
+                        <p style="color: #141719; position: relative; bottom: -5px">เรียงลำดับราคาโดย</p>
+
+                        <div>
+
+                            {% include 'components/sort_dell.html' %}
+
+                        </div>
+                    </div>
+
+                     <!-- ส่วนกรองและแสดงรายการแล็ปท็อป -->
+                    <div style="display: grid; align-items: start; grid-template-columns: 300px 1080px;">
+                        <!-- ส่วนกรอง -->
+                        <div>
+                            <div style="text-align: left; color: #141719;">
+
+                                <p style="font-size: 22px; font-weight: bold;">กรองข้อมูลแล็ปท็อป</p>
+
+                                <br>
+                                <!-- กรองแบรนด์ -->
+                                <style>
+
+                                    /* CSS */
+                                    .button-28 {
+                                      appearance: none;
+                                      background-color: transparent;
+                                      border: 2px solid #1A1A1A;
+                                      border-radius: 15px;
+                                      box-sizing: border-box;
+                                      color: #3B3B3B;
+                                      cursor: pointer;
+                                      display: inline-block;
+                                      
+                                      font-size: 16px;
+                                      font-weight: 600;
+                                      line-height: normal;
+                                      margin: 0;
+                                      min-width: 0;
+                                      outline: none;
+                                      padding: 3px 24px;
+                                      text-align: center;
+                                      text-decoration: none;
+                                      transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+                                      user-select: none;
+                                      -webkit-user-select: none;
+                                      touch-action: manipulation;
+                                      width: 50%;
+                                      height: 20%;
+                                      will-change: transform;
+                                    }
+                                    
+                                    .button-28:disabled {
+                                      pointer-events: none;
+                                    }
+                                    
+                                    .button-28:hover {
+                                      color: #fff;
+                                      background-color: #1A1A1A;
+                                      transform: translateY(-2px);
+                                    }
+                                    
+                                    .button-28:active {
+                                      box-shadow: none;
+                                      transform: translateY(0);
+                                    }
+                                    .button-28_2 {
+                                        appearance: none;
+                                        background-color: transparent;
+                                        border: 2px solid #1A1A1A;
+                                        border-radius: 15px;
+                                        box-sizing: border-box;
+                                        color: #3B3B3B;
+                                        cursor: pointer;
+                                        display: inline-block;
+                                        font-size: 16px;
+                                        font-weight: 600;
+                                        line-height: normal;
+                                        margin: 0;
+                                        min-width: 0;
+                                        outline: none;
+                                        padding: 2% 20px;
+                                        text-align: center;
+                                        text-decoration: none;
+                                        transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+                                        user-select: none;
+                                        -webkit-user-select: none;
+                                        touch-action: manipulation;
+                                        will-change: transform;
+                                        height: 10%;
+                                      }
+                                      
+                                      .button-28_2:disabled {
+                                        pointer-events: none;
+                                      }
+                                      
+                                      .button-28_2:hover {
+                                        color: #fff;
+                                        background-color: #1A1A1A;
+                                        transform: translateY(-2px);
+                                      }
+                                      
+                                      .button-28_2:active {
+                                        box-shadow: none;
+                                        transform: translateY(0);
+                                      }
+                                    </style>
+                                    
+                                    <form action="{{ url_for('filter_laptops') }}" method="POST" onsubmit="return validateCheckbox_brand(event)">
+                                        <p style="font-size: 18px; font-weight: bold;">ยี่ห้อ (Brand)</p>
+                                        <label style="font-size: 16px;" class="container">Acer
+                                            <input type="checkbox" name="brand" value="Acer">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label style="font-size: 16px;" class="container">Apple
+                                            <input type="checkbox" name="brand" value="Apple">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label style="font-size: 16px;" class="container">Asus
+                                            <input type="checkbox" name="brand" value="Asus">
+                                           
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label style="font-size: 16px;" class="container">Dell
+                                            <input type="checkbox" name="brand" value="Dell">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label style="font-size: 16px;" class="container">Hp
+                                            <input type="checkbox" name="brand" value="Hp">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label style="font-size: 16px;" class="container">Lenovo
+                                            <input type="checkbox"  name="brand" value="Lenovo">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label style="font-size: 16px;" class="container">MSI
+                                            <input type="checkbox"  name="brand" value="Msi">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                      
+                                        <button class="button-28" type="submit">กรองยี่ห้อ</button>
+                                    </form>
+                                    
+                                    <br>
+                                    
+                                    <p style="font-size: 18px; font-weight: bold;">ราคา</p>
+                                    <form action="{{ url_for('filter_laptops_by_price_Dell') }}" method="POST">
+                                        <p>
+                                            <input type="text" name="min_price" class="third-input" style="font-size: 14px; color: #141719;" required>
+                                            ฿ - 
+                                            <input type="text" name="max_price" class="third-input" style="font-size: 14px; color: #141719;" required> ฿
+                                        </p>
+                                        <button class="button-28" type="submit">กรองราคา</button>
+                                    </form>
+                                    
+                                    <br>
+                                    
+                                    <form action="{{ url_for('filter_laptops_by_ram_Dell') }}" method="POST" onsubmit="return validateCheckbox_ram(event)">
+                                        <p style="font-size: 18px; font-weight: bold;">หน่วยความจำชั่วคราว (Ram)</p>
+                                        <label style="font-size: 16px;" class="container">4GB
+                                            <input type="checkbox" name="ram" value="4">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label style="font-size: 16px;" class="container">8GB
+                                            <input type="checkbox" name="ram" value="8">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label style="font-size: 16px;" class="container">16GB
+                                            <input type="checkbox" name="ram" value="16">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label style="font-size: 16px;" class="container">32GB
+                                            <input type="checkbox" name="ram" value="32">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    
+                                        <button class="button-28" type="submit">กรอง Ram</button>
+                                    </form>
+                                    
+                                    <br>
+                                    
+                                    <form action="{{ url_for('filter_laptops_by_hdd_Dell') }}" method="POST" onsubmit="return validateCheckbox_hdd(event)">
+                                        <p style="font-size: 18px; font-weight: bold;">พื้นที่จัดเก็บข้อมูล (HDD Capacity)</p>
+                                        <label style="font-size: 16px;" class="container">128 GB
+                                            <input type="checkbox" name="hdd_capacity" value="128 GB">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label style="font-size: 16px;" class="container">256 GB
+                                                <input type="checkbox" name="hdd_capacity" value="256 GB">
+                                                <span class="checkmark"></span>
+                                        </label>
+                                        <label style="font-size: 16px;" class="container">512 GB
+                                                <input type="checkbox" name="hdd_capacity" value="512 GB">
+                                                <span class="checkmark"></span>
+                                        </label>
+                                        <label style="font-size: 16px;" class="container">1 TB
+                                                <input type="checkbox" name="hdd_capacity" value="1 TB">
+                                                <span class="checkmark"></span>
+                                        </label>
+                                    
+                                        <button class="button-28_2" type="submit">กรองพื้นที่จัดเก็บข้อมูล</button>
+                                    </form>
+                            </div>
+                        </div>
+                        <!-- End ส่วนกรอง -->
+                        {% include 'components/list.html' %}  
+                    </div>
+                </section>
+            </div>
+            <!-- End Services Section -->
+            <br>
+                
+
+                <div class="loader-overlay">
+                    <div class="loader">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+
+              <!-- JS -->
+              {% include 'components/js.html' %}
+            </body>
+        </html>

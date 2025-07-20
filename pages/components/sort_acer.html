@@ -1,0 +1,11 @@
+{% include 'components/js_sort.html' %}
+
+<form action="/sort_laptops_acer" method="POST">
+
+    <select style ="font-size: 14px" class="dropdown-content" name="sort" id="sort" onchange="handleChange(this)">
+        <option value="start">ค่าตั้งต้น</option>
+        <option value="lowsort">ราคาถูกมาก - แพงมาก</option>
+        <option value="expensivesort">ราคาแพงมาก - ถูกมาก</option>
+    </select>
+    <br><br>
+</form>

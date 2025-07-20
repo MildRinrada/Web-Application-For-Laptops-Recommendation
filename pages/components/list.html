@@ -1,0 +1,73 @@
+<form action="{{ url_for('compare_laptop') }}" method="POST" onsubmit="return handleSubmit();">
+    <button class="button-28" style="width: 150px; height: 40px; position: absolute; bottom: -340px; right: 530px" type="submit">เปรียบเทียบ</button>
+    {% for laptop in laptops %}
+    <div style="display: flex; align-items: center;">
+        <a href="{{ url_for('laptop_information', laptop_id=laptop.laptop_id) }}" class="a2">
+        <img class="img2" src="{{ url_for('static', filename=laptop.img) }}" alt="รูปแล็ปท็อปตัวอย่าง" width="260" height="auto">
+        </a>
+        <div style="padding: 20px; {% if loop.index is even %} background: #efeded; color: #fff; {% else %} background: #fff; color: #efeded; {% endif %} margin-left: 20px;">
+            <!-- เนื้อหาด้านในของ div นี้ -->
+   
+        
+            <a href="{{ url_for('laptop_information', laptop_id=laptop.laptop_id) }}" class="a2">
+                <p style="text-align: left; font-size: 18px; font-weight: bold; color: #141719;">{{ laptop.model }}</p>
+            </a>
+            <br>
+            <div class="grid_information_list" style="display: flex;">
+                <div style="margin-right: 20px;">
+                    <p class="list1">หน่วยประมวลผลกลาง</p>
+                    <p class="list1">หน่วยประมวลผลกราฟิก</p>
+                    <p class="list1">หน่วยความจำชั่วคราว</p>
+                    <p class="list1">พื้นที่จัดเก็บข้อมูล</p>
+                </div>
+                <div style="color: #141719; text-align: left; font-size: 14px; line-height: 3.4;">
+                    <p>
+                        {{ laptop.cpu_model }}
+                        <br>{{ laptop.graphic_chip }}
+                        <br>{{ laptop.ram }} GB
+                        <br>{{ laptop.hdd_capacity }}
+                    </p>
+                </div>
+            </div>
+
+            <br>
+
+            <div style="display: flex; align-items: center; gap: 30px;">
+                <p class="price_information">{{ laptop.prices }} บาท</p>
+                <div>
+                    <label style="font-size: 20px; color:#141719; " class="container">เปรียบเทียบ
+                        <input type="checkbox" name="compare_laptop_ids" value="{{ laptop.laptop_id }}" onclick="return validateCheckbox();">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</form>
+
+
+<script>
+    // Function to handle form submission
+    function handleSubmit() {
+        // Get all checked checkboxes
+        var checkedCheckboxes = document.querySelectorAll('input[name="compare_laptop_ids"]:checked');
+        
+        // Check if number of checked checkboxes exceeds 2
+        if (checkedCheckboxes.length > 2 || checkedCheckboxes.length < 2 ) {
+            alert('คุณสามารถเลือกแล็ปท็อปได้สูงสุด 2 เครื่องเท่านั้น');
+            return false;
+        }
+        return true;
+    }
+
+        window.onload = function() {
+            window.location.href = "#services";
+        };
+    
+</script>
+
+<style>
+    
+</style>
+

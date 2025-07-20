@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>แสดงข้อมูลแล็ปท็อป</title>
+        
+        {% include 'components/css2.html' %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        {% include 'components/css_recom.html' %}
+
+        </head>
+        <body id="home" class="bodydark">
+            <!-- Header -->
+            <header id="top-header" class="header-home">
+                {% include 'components/head.html' %}
+            </header>
+            <!-- End Header -->
+            <div id="services"> 
+            <!-- แสดงข้อมูลแล็ปท็อปยี่ห้อ Lenovo -->
+                <section class="grid grid-pad services">
+                    
+                    <br><br><br><br>
+                    <a class="btn read-more" style = "float: left;" onclick="goBack()">< ย้อนกลับ</a>
+                    <br><br>
+                    <div class="">
+                        <p class="p2">กรอกข้อมูลเพื่อแนะนำแล็ปท็อปที่เหมาะสมกับคุณ</p>
+                        <br><br>
+                        <p class="p1" style="font-size: 20px">การใช้งานที่ต้องการ</p>
+                        <br><br>
+                        <div class="gridthree">
+                            <div class="gridthree-item">
+                                <a href="{{ url_for('recommendation_list', rule='rule16') }}#services">
+                                    <img src="{{ url_for('static', filename='recommendation/1_spec.png') }}" onmouseover="zoomIn(this)" onmouseout="zoomOut(this)" width="200" height="auto">
+                                    &nbsp;
+                                </a>
+                            </div>
+                            <div class="gridthree-item">
+                                <a href="{{ url_for('recommendation_spec_medium_os4') }}">
+                                    <img src="{{ url_for('static', filename='recommendation/2_spec.png') }}" onmouseover="zoomIn(this)" onmouseout="zoomOut(this)" width="200" height="auto">
+                                    &nbsp;
+                                </a>
+                            </div>
+                            <div class="gridthree-item">
+                                <a href="{{ url_for('recommendation_list', rule='rule14') }}#services">
+                                    <img src="{{ url_for('static', filename='recommendation/3_spec.png') }}" onmouseover="zoomIn(this)" onmouseout="zoomOut(this)" width="200" height="auto">
+                                </a>
+                            </div>    
+                        </div>
+                        <div class="gridthree">
+                            <div class="gridthree-item">
+                                <p>เหมาะกับงานพื้นฐาน เช่น การเรียนออนไลน์<br>
+                                    ท่องเว็บ การใช้งาน Microsoft Words<br>
+                                    มักมีราคาถูกและน้ำหนักเบาว่า<br>
+                                    แต่ไม่สามารถใช้งานประมวลผลหนัก
+                                    </p>
+                            </div>
+                            <div class="gridthree-item">
+                                <p>เหมาะสำหรับงานที่มีความซับซ้อนกว่างานทั่วไปแต่ไม่<br>
+                                    ได้ต้องการการประมวลผลที่มากเกินไป เช่น <br>
+                                    การตัดต่อรูป ทำตัดต่อคลิปวิดีโอ เล่นเกม the <br>
+                                    sims 4, stardew valley 
+                                    </p>
+                            </div>
+                            <div class="gridthree-item">
+                                <p>เหมาะสำหรับงานที่เน้นประสิทธิภาพสูง<br>
+                                    สุดเช่น Adobe Creative Cloud<br>
+                                    มักมีราคาที่สูงกว่าและมีน้ำหนักมากกว่า
+                                    </p>
+                            </div>    
+                        </div>
+                        <br><br>
+                            
+                    <br>
+                    </div>
+                </section>                 
+            </div>
+            <!-- End Services Section -->
+
+                
+                <div class="loader-overlay">
+                    <div class="loader">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+
+              <!-- JS -->
+              {% include 'components/js.html' %}
+            </body>
+        </html>

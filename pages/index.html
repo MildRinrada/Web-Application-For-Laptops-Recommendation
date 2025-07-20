@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>เว็บแอปพลิเคชันแนะนำแล็ปท็อป</title>
+        
+        <!-- CSS -->
+        {% include 'components/css2.html' %}
+
+        </head>
+        <body id="home">
+            <!-- Header -->
+            <header id="top-header" class="header-home">
+                <div class="grid">
+                    <div class="col-1-1">
+                            <div class="logo-wrap">
+                                <a href="http://127.0.0.1:5000/" style="position: relative; top: 10px; font-weight: bold; font-size: 20px;">เว็บไซต์แนะนำแล็ปท็อป</a>                          
+                                <nav class="navigation">
+                                    <input type="checkbox" id="nav-button">
+                                    <label for="nav-button" onclick></label>
+                                    <ul class="nav-container" style="font-size: 18px;">
+                                        <li><a href="http://127.0.0.1:5000/#home">หน้าหลัก</a></li>
+                                        <li><a href="http://127.0.0.1:5000/#about">เกี่ยวกับ</a></li>
+                                        <li><a href="http://127.0.0.1:5000/#contact">ติดต่อ</a></li>
+                                        <li><a href="http://127.0.0.1:5000/#team">จัดทำโดย</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                    </div>
+                </div>  
+                {% include 'components/email.html' %}  
+            </header>
+            <!-- End Header -->
+
+            <!-- Parallax Section -->
+            {% include 'components/parallax.html' %}  
+            <!-- End Parallax Section -->
+
+            <!-- เส้นโค้ง -->
+            <svg class="curveUpColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M0 100 C 20 0 50 0 100 100 Z"></path>
+            </svg>
+
+            <!-- Services Section -->
+            <div class="wrap services-wrap" id="services">
+                <section class="grid grid-pad services">
+                    <h2>กรุณาเลือกยี่ห้อที่ต้องการ</h2>
+                    <div class="col-1-4 service-box service-1">
+                        <a href="{{url_for('lenovo_list')}}">
+                        <img src="static/logo/Lenovo_Logo.png" class="img2" alt="คลิกที่นี่เพื่อแสดงรายแล็ปท็อปยี่ห้อ Lenovo" width="250" height="auto">
+                        </a>
+                        <p style="color: #141719;">ดีในเรื่องของความทนทาน <br />ใช้งานที่ต้องการคุณภาพสูง</p>
+                        <a class="btn read-more" href="{{ url_for('lenovo_list') }}">แสดงรายการแล็ปท็อป Lenovo</a>
+                    </div>                    
+                    <div class="col-1-4 service-box service-2" >
+                        <a  href="{{ url_for('msi_list') }}">
+                        <img src="static/logo/Msi_Logo.png" class="img2" alt="คลิกที่นี่เพื่อแสดงรายแล็ปท็อปยี่ห้อ Msi" width="250" height="auto">
+                        </a>
+                        <p style = "color: #141719;">เน้นด้านกราฟิกและเล่นเกม <br />และมีความทนทานสูง</p>
+                        <a class="btn read-more" href="{{ url_for('msi_list') }}">แสดงรายการแล็ปท็อป MSI</a>
+                    </div>
+                    <div class="col-1-4 service-box service-3">
+                        <a href="{{url_for('acer_list')}}">
+                        <img src="static/logo/Acer_Logo.png" class="img2" alt="คลิกที่นี่เพื่อแสดงรายแล็ปท็อปยี่ห้อ Acer" width="250" height="auto">
+                        </a>
+                        <p style = "color: #141719;">มีโมเดลที่คุ้มค่าและเหมาะสำหรับ<br />ผู้ที่มองหาคุณภาพในราคาที่เหมาะสม</p>
+                        <a class="btn read-more" href="{{ url_for('acer_list') }}">แสดงรายการแล็ปท็อป Acer</a>
+                    </div>
+                    <div class="col-1-4 service-box service-4" >
+                        <a href="{{ url_for('asus_list') }}">
+                        <img src="static/logo/Asus_Logo.jpg" class="img2" alt="คลิกที่นี่เพื่อแสดงรายแล็ปท็อปยี่ห้อ Asus" width="250" height="auto">
+                        </a>
+                        <p style = "color: #141719;">รุ่นแล็ปท็อปที่เหมาะสำหรับทุกการใช้งาน ไม่ว่าจะเป็นเกม, ทำงาน, หรือใช้ทั่วไป</p>
+                        <a class="btn read-more" href="{{ url_for('asus_list') }}">แสดงรายการแล็ปท็อป Asus</a>
+                    </div>
+                </section>
+                <br>
+                <section class="grid grid-pad services">
+                    <div class="col-1-4 service-box service-1" >
+                        <a href="{{ url_for('dell_list') }}">
+                        <img src="static/logo/Dell_Logo.png" class="img2"  alt="คลิกที่นี่เพื่อแสดงรายแล็ปท็อปยี่ห้อ Dell" style="margin-left: -20px;" width="300" height="auto">
+                        </a>
+                        <p style = "color: #141719;">เน้นคุณภาพสูงในดีไซน์และประสิทธิภาพ เหมาะกับธุรกิจและผู้ใช้ทั่วไป</p>
+                        <a class="btn read-more" href="{{ url_for('dell_list') }}">แสดงรายการแล็ปท็อป Dell</a>
+                    </div>
+                    <div class="col-1-4 service-box service-2" >
+                        <a href="{{ url_for('hp_list')}}">
+                        <img src="static/logo/Hp_Logo.png" class="img2" alt="คลิกที่นี่เพื่อแสดงรายแล็ปท็อปยี่ห้อ Hp" style="margin-left: -20px;" width="300" height="auto">
+                        </a>
+                        <p style = "color: #141719;">มีโมเดลที่หลากหลายและเน้นการนวัตกรรมทั้งในดีไซน์และเทคโนโลยี</p>
+                        <a class="btn read-more" href="{{ url_for('hp_list') }}">แสดงรายการแล็ปท็อป Hp</a>
+                    </div>
+                    <div class="col-1-4 service-box service-3">
+                        <a href="{{ url_for('apple_list') }}">
+                        <img src="static/logo/Apple_Logo.png" class="img2" alt="คลิกที่นี่เพื่อแสดงรายแล็ปท็อปยี่ห้อ Apple" style="margin-left: -20px;" width="300" height="auto">
+                        </a>
+                        <p style = "color: #141719;"> เน้นการนวัตกรรมและดีไซน์ที่สวยงาม และระบบมีความปลอดภัยที่น่าเชื่อถือได้</p>
+                        <a class="btn read-more" href="{{ url_for('apple_list') }}">แสดงรายการแล็ปท็อป Apple</a>
+                    </div>
+                </section>
+            </div>
+            <!-- End Services Section -->
+            
+            <!-- CurveDown -->
+            <svg class="curveDownColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M0 0 C 50 100 80 100 100 0 Z"></path>
+            </svg>
+
+          <!-- Work Section -->
+          <div class="wrap grey recent-wrap" id="about">
+            <section class="grid grid-pad">
+                <h2 style="color: #fff; text-align: center;">เกี่ยวกับโปรเจคปัญหาพิเศษเว็บไซต์</h2>
+                <!-- Start of Filter section -->
+                <div class="col-1-1 mix">
+                    <ul class="filters" >   
+                        <li class="filter active" data-filter="all">ข้อมูลทั้งหมด</li>
+                        <li style="color: #fff;" class="filter" data-filter=".origin">ที่มาและความสำคัญ</li>
+                        <li style="color: #fff;" class="filter" data-filter=".objective">วัตถุประสงค์</li>
+                        <li style="color: #fff;" class="filter" data-filter=".scope">ขอบเขต</li>
+                    </ul>
+                </div>
+                <!-- End of Filter section -->
+                <div class="portfolio-items" >
+                    <div class="mix origin">
+                    <p style="color: #fff; text-align: left; font-size: 20px;">ที่มาและความสำคัญ</p>
+                    <p style="color: #fff; text-align: justify; white-space: pre; font-size: 16px;"> 
+                ปัญหาที่เกิดขึ้นในการเลือกซื้อแล็ปท็อปในปัจจุบันคือผู้ซื้อต้องมีความรู้และทำการค้นคว้าข้อมูลเพิ่มเติมจากแหล่งต่างๆ เช่น YouTube หรือเว็บไซต์ที่รวบรวม
+ข้อมูลเกี่ยวกับแล็ปท็อป ซึ่งการค้นหาข้อมูลเหล่านี้อาจเป็นเรื่องยุ่งยากและเสียเวลา โดยเฉพาะเมื่อมีหลายรุ่นและแบรนด์ของ แล็ปท็อปที่มีคุณสมบัติและราคาต่างกันอย่างมาก 
+                นอกจากนี้ยังมีปัญหาเกี่ยวกับระบบปฏิบัติการของแล็ปท็อปที่ผู้ซื้อต้องพิจารณา เช่น Windows หรือ iOS ซึ่งอาจส่งผลให้ผู้ใช้ต้องปรับตัวเข้ากับระบบใหม่หรือ
+มีปัญหาในการใช้งานต่าง ๆ ที่แตกต่างกันระหว่างระบบปฏิบัติการ อีกปัญหาหนึ่ง คือราคาของแล็ปท็อปที่สูงมาก การซื้อแล็ปท็อปในราคาที่สูงอาจไม่สอดคล้องกับการใช้งานของผู้ใช้ 
+และอาจทำให้เงินที่ใช้ซื้อแล็ปท็อปไม่คุ้มค่าตามที่คาดหวัง เช่น ผู้ใช้งานต้องการตัดสินใจซื้อแล็ปท็อปเพื่อใช้ในการตัดต่อวิดีโอและมีราคาสูง แต่เมื่อใช้งานจริงแล็ปท็อปไม่เหมาะสม
+กับการใช้งานในงานตัดต่อวิดีโอ และอายุแบตเตอรี่น้อย เป็นต้น
+                ทางผู้จัดทำได้พบปัญหาที่กล่าวมาและต้องการพัฒนาเว็บแอปพลิเคชันที่สามารถแนะนำการเลือกซื้อแล็ปท็อปให้เหมาะสมต่อการใช้งานและงบประมาณของผู้ใช้งาน ผู้ใช้งาน
+เพียงแค่กรอกข้อมูลทั่วไป เช่น ระดับการใช้งาน งบประมาณ ระบบปฏิบัติการที่ต้องการ หน้าจอสัมผัสหรือไม่ เป็นต้น
+                โดยระบบเว็บแอปพลิเคชันแนะนำแล็ปท็อป ได้ประยุกต์ใช้ปัญญาประดิษฐ์ (Artificial Intelligence) ด้วยระบบผู้เชี่ยวชาญที่ใช้กฎ (Rule-based Expert System) และสร้างระบบ
+แนะนำแล็ปท็อป (Recommendation System) เพื่อวิเคราะห์หาแล็ปท็อปที่เหมาะสมกับผู้ใช้ผ่านเว็บไซต์ที่ให้ผู้ใช้กรอกข้อมูล แล้วผลลัพธ์ที่ได้จะแสดงผลลัพธ์เป็นแล็ปท็อปที่เหมาะสมที่สุด
+สำหรับผู้ใช้ โดยข้อมูลที่นำมาฝึกสอนโมเดลได้ทำการรวบรวมจากแบบสอบถาม
+                    </p>                                                            
+                    </div>
+                    <div class="mix objective">
+                    <p style="color: #fff; text-align: left; font-size: 20px;">วัตถุประสงค์</p>
+                    <p style="color: #fff; text-align: justify; white-space: pre; font-size: 16px;">
+    1)  เพื่อพัฒนาเว็บแอปพลิเคชันที่สามารถแนะนำแล็ปท็อปที่มีประสิทธิภาพและเหมาะสมสำหรับผู้ใช้งาน โดยใช้การประมวลผลข้อมูล
+            และใช้ระบบผู้เชี่ยวชาญที่ใช้กฎ (Rule-based Expert System)
+
+    2)  เพื่อช่วยลดเวลาในการค้นหาข้อมูลสเป็คของแล็ปท็อปรุ่นต่าง ๆ และได้ทราบข้อมูลการรีวิวของแล็ปท็อปในรุ่นที่ระบบแนะนำ
+                    </p>
+                    </div>
+                    <div class="mix scope">
+                    <p style="color: #fff; text-align: left; font-size: 20px;">ขอบเขต</p>
+                    <p style="color: #fff; text-align: justify; white-space: pre; font-size: 16px;"> 
+        1)  ระบบที่พัฒนาขั้นอยู่ในรูปแบบเว็บแอปพลิเคชันที่สามารถแนะนำแล็ปท็อปที่เหมาะสมกับผู้ใช้ โดยออกแบบและพัฒนาส่วนติดต่อ
+              ผู้ใช้ที่ใช้ในการป้อนข้อมูลเพื่อแนะนำรายการแล็ปท็อปที่เหมาะสม และรวบรวมข้อมูลเกี่ยวข้องเพื่อนำมาวิเคราะห์และสร้างแบบจำลอง
+
+        2)  ข้อมูลที่ใช้ในการฝึกสอนโมเดลได้มาจากแบบสอบถามจำนวน 300 คน โดยมุ่งเน้นเก็บข้อมูลของบุคคลที่มีอายุระหว่าง 13-60 ปี 
+              และยี่ห้อของแล็ปท็อปประกอบไปด้วย Asus, Acer, Lenovo, Dell, MSI, Apple และ HP 
+                    </p>
+                    </div>
+            </div> 
+                  
+                <div class="col-1-1"><a class="btn" href="https://drive.google.com/file/d/13r1-gyA3N48CsQWhJHA_8cM2OF99T9T-/view" target="_blank">คลิกที่นี่เพื่ออ่านรูปเล่มโปรเจค</a></div>
+            </section>  
+        </div>
+            <!-- End Work Section -->
+   
+            <!-- CurveUp -->
+            <svg class="curveUpColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M0 100 C 20 0 50 0 100 100 Z"></path>
+            </svg>
+            
+           <!-- Contact Section -->
+           <div class="wrap contact" id="contact">
+            <div class="grid grid-pad" >
+                <h2>ติดต่อเรา</h2>
+                <div class="col-1-2" >
+                    <div class="content address">
+                        <h3>ติดต่อเราได้ที่</h3>
+                        <address>
+                            <div>
+                                <div class="box-icon2">
+                                    <img style="position: relative; top: 5px" src="static/icon/icons8-email-100.png" alt="ไอคอนอีเมล" width="25" height="auto">
+                                </div>
+                                <span>อีเมล:</span>
+                                <p style = "color: #141719;">mildxxxx@gmail.com</p>
+                            </div>                                                                                
+                        </address>
+                    </div>
+                </div>
+                 <div class="col-1-2 pleft-25" >
+                    <div class="content contact-form">
+                        <form class="form contact_form" id="myForm" onsubmit="sendMail(event)">
+                            <input type="text" id="name" class="second-input" type="name" style="font-size: 14px; color: #141719;" placeholder="ชื่อผู้ส่ง*" required>
+                            <input type="text" id="email" class="second-input" type="email" style="font-size: 14px; color: #141719;" placeholder="อีเมล*" required>
+                            <input type="text" id="subject" class="second-input" type="title" style="font-size: 14px; color: #141719;" placeholder="หัวเรื่อง*" required>
+                            <textarea id="message" class="second-input" type="msg" style="font-size: 14px; color: #141719;" placeholder="ข้อความ..." required></textarea>                             
+                            <input type="submit" onclick="sendMail()" value="ส่งข้อความ" class="btn submit comment-submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Contact Section -->
+
+            
+
+                
+                <!-- End Team Section -->
+
+   
+
+                <!-- JS -->
+                <script src="/static/js/jquery.js"></script>
+                <script src="/static/js/main.js"></script>
+                <script src="/static/js/mixitup.js"></script>
+                <script src="/static/js/smoothscroll.js"></script>
+                <script src="/static/js/jquery.nav.js"></script>
+                <script src="/static/js/owl-carousel/owl.carousel.min.js"></script>
+                <script src="https://maps.googleapis.com/maps/api/js"></script>
+                <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+                <script src="/static/js/jquery.counterup.min.js"></script>
+                <script src="/static/js/lightcase.min.js"></script>
+            </body>
+        </html>

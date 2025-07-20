@@ -1,0 +1,224 @@
+<!doctype html>
+<!--
+	The7 by TEMPLATE STOCK
+	templatestock.co @templatestock
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>แสดงข้อมูลแล็ปท็อป</title>
+        
+        <!-- CSS -->
+        {% include 'components/css2.html' %}
+        {% include 'components/css_recom.html' %}
+        
+        </head>
+        <body id="home">
+            <!-- Header -->
+            <header id="top-header" class="header-home">
+                {% include 'components/head.html' %}
+            </header>
+            <!-- End Header -->
+
+            <div id="services">
+                <br><br><br><br>
+                <!-- แสดงรายการแล็ปท็อปยี่ห้อ Lenovo -->
+                <section>
+                    <button class="btn3 read-more" style = "margin-left: 30px;" onclick="goBack()">< ย้อนกลับ</button>
+                    <div class="grid_information3" style="margin-left: 30px;">
+                        {% for laptop in laptops %}
+                        <div>
+                            <!-- รายละเอียดของแล็ปท็อป -->
+                            <div>
+                                <!-- รูปภาพ และชื่อรุ่น -->
+                                <img style ="margin-left: 150px;" class="img2" src="{{ url_for('static', filename=laptop.img) }}" alt="รูปแล็ปท็อปตัวอย่าง" width="350" height="auto">
+                                <br><br>
+                                <p style="color: #141719; text-align: left; font-size: 23px; font-weight: bold;">{{ laptop.model }}</p>
+                            </div><br>
+
+                            <div class="grid_information2">
+                                <!-- ช่องทางซื้อ และราคา -->
+                                <div>
+                                    <p style="color: #141719; font-weight: bold;">ช่องทางซื้อ</p>
+                                    <a href="{{ laptop.url_buy }}">
+                                        <img class="img2" src="{{ url_for('static', filename=laptop.store_name) }}" width="200" height="auto">
+                                    </a>
+                                </div>
+                                <div>
+                                    <p style="color: #141719; text-align: left; font-size: 26px; font-weight: bold;">ราคา {{ laptop.prices }} บาท</p>
+                                </div>
+                            </div><br>
+
+                            <!-- Processor -->
+                            <p class="spec_type">Processor (หน่วยประมวลผลกลาง)</p>
+                            <div class="grid_information spec_des">
+                                
+                                <div>
+                                    <p>CPU Brand<br>CPU Model<br>Base Clock<br>Boost Clock<br>Cache</p>
+                                </div>
+                                <div>
+                                    <p>{{ laptop.cpu_brand }}<br>{{ laptop.cpu_model }}<br>{{ laptop.base_clock }}<br>{{ laptop.boost_clock}}<br>{{ laptop.cache }}</p>
+                                    
+                                </div>
+                            </div><br>
+                            
+                            <!-- Graphic (กราฟิก) -->
+                            <div>
+                                <p class="spec_type">Graphic (กราฟิก)</p>
+                                <div class="grid_information spec_des">
+                                    <div>
+                                        <p>Brand<br>Graphic Chip</p>
+                                    </div>
+                                    <div>
+                                        <p>{{ laptop.graphic_brand }}<br>{{ laptop.graphic_chip }}</p>
+                                    </div>
+                                </div>
+                            </div><br>
+
+                            <!-- Display (การแสดงผลของหน้าจอ) -->
+                            <div>
+                                <p class="spec_type">Display (การแสดงผลของหน้าจอ)</p>
+                                <div class="grid_information spec_des">
+                                    <div>
+                                        <p>Display Size (ขนาดหน้าจอ)<br>Display Specs<br>Display Type<br>Touchscreen</p>
+                                    </div>
+                                    <div>
+                                        <p>{{ laptop.display_size }}<br>{{ laptop.display_specs }}<br>{{ laptop.display_type }}<br>{{ laptop.touchscreen }}</p>
+                                    </div>
+                                </div>
+                            </div><br>
+
+                            <!-- Memory (หน่วยความจำ) -->
+                            <div>
+                                <p class="spec_type">Memory (หน่วยความจำ)</p>
+                                <div class="grid_information spec_des">
+                                    <div>
+                                        <p>Ram (หน่วยความจำชั่วคราว)<br>Ram Type</p>
+                                    </div>
+                                    <div>
+                                        <p>{{laptop.ram}}<br>{{laptop.ram_type}}</p>
+                                    </div>
+                                </div>
+                            </div><br>
+
+                            <!-- Storage (พื้นที่ในการจัดเก็บ) -->
+                            <div>
+                                <p class="spec_type">Storage (พื้นที่ในการจัดเก็บ)</p>
+                                <div class="grid_information spec_des">
+                                    <div>
+                                        <p>HDD 1 Capacity<br>HDD 1 Type</p>
+                                    </div>
+                                    <div>
+                                        <p>{{laptop.hdd_capacity}}<br>{{laptop.hdd_type}}</p>
+                                    </div>
+                                </div>
+                            </div><br>
+
+                            <!-- Network Connection (ตัวรับสัญญาณ)  -->
+                            <div>
+                                <p class="spec_type">Network Connection (ตัวรับสัญญาณ)</p>
+                                <div class="grid_information spec_des">
+                                    <div>
+                                        <p>Wi-Fi<br>Bluetooth</p>
+                                    </div>
+                                    <div>
+                                        <p>{{laptop.wifi}}<br>{{laptop.bluetooth}}</p>
+                                    </div>
+                                </div>
+                            </div><br>
+
+                            <!-- Operating System (ระบบปฏิบัติการ) -->
+                            <div>
+                                <p class="spec_type">Operating System (ระบบปฏิบัติการ)</p>
+                                <div class="grid_information spec_des">
+                                    <div>
+                                        <p>OS</p>
+                                    </div>
+                                    <div>
+                                        <p>{{laptop.os}}</p>
+                                    </div>
+                                </div>
+                            </div><br>
+                            <!-- Web Camera (กล้องหน้าจอ) -->
+                            <div>
+                                <p class="spec_type">Web Camera (กล้องหน้าจอ)</p>
+                                <div class="grid_information spec_des">
+                                    <div>
+                                        <p>Web Camera (กล้องหน้าจอ)</p>
+                                    </div>
+                                    <div>
+                                        <p>{{laptop.web_camera}}</p>
+                                    </div>
+                                </div>
+                            </div><br>
+
+                            <!-- Battery (แบตเตอรี่) -->
+                            <div>
+                                <p class="spec_type">Battery (แบตเตอรี่)</p>
+                                <div class="grid_information spec_des">
+                                    <div>
+                                        <p>Battery (แบตเตอรี่)</p>
+                                    </div>
+                                    <div>
+                                        <p>{{laptop.battery}}</p>
+                                    </div>
+                                </div>
+                            </div><br>
+
+                            <!-- I/O Ports (พอร์ตที่ใช้งานต่างๆ) -->
+                            <div>
+                                <p class="spec_type">I/O Ports (พอร์ตที่ใช้งานต่างๆ)</p>
+                                <div class="grid_information spec_des">
+                                    <div>
+                                        <p>I/O Ports (พอร์ตที่ใช้งานต่างๆ)</p>
+                                    </div>
+                                    <div>
+                                        {% for io_ports in laptop.formatted_io %}
+                                        <p style="color: #141719; text-align: left;">{{ io_ports }}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div><br>
+                            <!-- ข้อดี -->
+                            <div>
+                                <p class="spec_type">ข้อดี</p>
+                                <p class="spec_des">
+                                    {% for pros in laptop.formatted_pros %}
+                                    <p style="color: #141719; text-align: left;">{{ pros }}</p>
+                                    {% endfor %}
+                                </p>
+                            </div><br>
+
+                            <!-- ข้อเสีย -->
+                            <div>
+                                <p class="spec_type">ข้อเสีย</p>
+                                <p class="spec_des">
+                                    {% for con1 in laptop.formatted_cons %}
+                                    <p style="color: #141719; text-align: left;">{{ con1 }}</p>
+                                    {% endfor %}
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
+            <br><br><br>
+            
+            <div class="loader-overlay">
+                <div class="loader">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+            
+            <!-- JS -->
+            {% include 'components/js.html' %}
+            
+            </body>
+        </html>

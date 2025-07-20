@@ -1,0 +1,65 @@
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/main.js"></script>
+<script src="/static/js/mixitup.js"></script>
+<script src="/static/js/smoothscroll.js"></script>
+<script src="/static/js/jquery.nav.js"></script>
+<script src="/static/js/owl-carousel/owl.carousel.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+<script src="/static/js/jquery.counterup.min.js"></script>
+<script src="/static/js/lightcase.min.js"></script>   
+<script>
+    function validateCheckbox_brand(event) {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"][name="brand"]');
+        var isChecked = false;
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                isChecked = true;
+                return; // ออกจากการวนลูปทันทีเมื่อพบกล่องที่ถูกเลือกแล้ว
+            }
+        });
+        if (!isChecked) {
+            alert("กรุณาเลือกอย่างน้อยหนึ่งช่อง");
+            event.preventDefault(); // ยกเลิกการส่งแบบฟอร์ม
+            return false; // ยกเลิกการส่งฟอร์ม
+        }
+        return true; // ส่งฟอร์มไปยังเซิร์ฟเวอร์
+    }
+    function validateCheckbox_ram(event) {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"][name="ram"]');
+        var isChecked = false;
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                isChecked = true;
+                return; // ออกจากการวนลูปทันทีเมื่อพบกล่องที่ถูกเลือกแล้ว
+            }
+        });
+        if (!isChecked) {
+            alert("กรุณาเลือกอย่างน้อยหนึ่งช่อง");
+            event.preventDefault(); // ยกเลิกการส่งแบบฟอร์ม
+            return false; // ยกเลิกการส่งฟอร์ม
+        }
+        return true; // ส่งฟอร์มไปยังเซิร์ฟเวอร์
+    }
+    function validateCheckbox_hdd(event) {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"][name="hdd_capacity"]');
+        var isChecked = false;
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                isChecked = true;
+                return; // ออกจากการวนลูปทันทีเมื่อพบกล่องที่ถูกเลือกแล้ว
+            }
+        });
+        if (!isChecked) {
+            alert("กรุณาเลือกอย่างน้อยหนึ่งช่อง");
+            event.preventDefault(); // ยกเลิกการส่งแบบฟอร์ม
+            return false; // ยกเลิกการส่งฟอร์ม
+        }
+        return true; // ส่งฟอร์มไปยังเซิร์ฟเวอร์
+    }
+    
+    
+    </script>
+    
+    
+    

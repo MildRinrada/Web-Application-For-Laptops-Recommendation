@@ -1,0 +1,242 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>แสดงข้อมูลแล็ปท็อป</title>
+        
+        {% include 'components/css2.html' %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+
+        </head>
+        <body id="home">
+            <!-- Header -->
+            <header id="top-header" class="header-home">
+                {% include 'components/head.html' %}
+            </header>
+            <!-- End Header -->
+            <div id="services"> <br><br><br><br>
+                <button class="btn3 read-more" style = "margin-left: 30px; float:left;" onclick="goBack()">< ย้อนกลับ</button>
+            <!-- แสดงข้อมูลแล็ปท็อปยี่ห้อ Lenovo -->
+                <section class="grid grid-pad services">
+                    <br>
+                    <p style = "color: #141719; text-align: left"><a href="http://127.0.0.1:5000/" class= "a2">หน้าหลัก</a> > <a class="a2" href="http://127.0.0.1:5000/{{ laptop.brand }}_list">แสดงรายการแล็ปท็อปยี่ห้อ {{laptop.brand}}</a> > {{ laptop.model }}</p>
+                    <br>
+                    <p style = "color: #141719; text-align: left; font-size: 25px; font-weight: bold;">{{ laptop.model }}</p>
+                    <br>
+
+                    <!-- ส่วนบน 1-->
+                    <div style="display: grid; align-items: center; width: autopx; grid-template-columns: repeat(2, 1fr);grid-gap: -100px;">
+                        <img class="img2" src="{{ url_for('static', filename=laptop.img) }}" alt="รูปแล็ปท็อปตัวอย่าง" width="400" height="auto">
+                        <p style = "text-align: justify; font-size: 16px; color: #141719;">{{ laptop.description }}</p>
+                    </div>
+
+       
+
+                    <!-- ส่วนบน 2-->
+                    <div style="display: grid; align-items: center; grid-template-columns: repeat(2, 1fr);grid-gap: -100px;">
+                        <div></div>
+                        <div style="display: grid; align-items: center; grid-template-columns: repeat(2, 1fr);grid-gap: -100px;">
+                            <p style = "color: #141719; text-align: left; font-size: 26px; font-weight: bold;">ราคา {{ laptop.prices }}</p>
+                            <div style="text-align: left;">
+                                <p style = "color: #141719; font-weight: bold;">ช่องทางซื้อ</p>
+                                <a href="{{ laptop.url_buy }}">
+                                    <img class="img2" src="{{ url_for('static', filename=laptop.store_name) }}" alt="รูปแล็ปท็อปตัวอย่าง" width="250" height="auto">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <!-- ส่วนบน 3-->
+                    <div style="display: grid; align-items: center; grid-template-columns: repeat(2, 1fr);grid-gap: -100px;">
+                        <p style = "color: #141719; text-align: left; font-size: 20px; font-weight: bold;">ข้อดี</p>
+                        <p style = "color: #141719; text-align: left; font-size: 20px; font-weight: bold;">ข้อเสีย</p>
+                    </div>
+
+                    <!-- ส่วนบน 4-->
+                    <div style="display: grid; align-items: start; grid-template-columns: repeat(2, 1fr);grid-gap: -100px;">
+                        <div>
+                            {% for pros in laptop.formatted_pros %}
+                            <p style = "color: #141719; text-align: left;">{{ pros }}</p>
+                            {% endfor %}
+                        </div>
+                        <div>
+                            {% for con in laptop.formatted_cons %}
+                            <p style="color: #141719; text-align: left;">{{ con }}</p>
+                            {% endfor %}
+                        </div>                        
+                    </div>
+
+                    <br>
+                    <hr style = "border: 1px solid #cececf;">
+                    <br>
+                    <p style="font-size: 25px; font-weight: bold; text-align: left; color: #141719;">คุณสมบัติ {{ laptop.model }}
+                    
+                    <br><br>
+
+                    <!-- ส่วนล่าง 1-->
+                    <div style="display: grid; align-items: start; grid-template-columns: repeat(2, 1fr);grid-gap: -100px;">
+                        <p style = "color: #141719; text-align: left; font-size: 18px; font-weight: bold;">Processor (หน่วยประมวลผลกลาง)</p>
+                        <p style = "color: #141719; text-align: left; font-size: 18px; font-weight: bold;">Network Connection (ตัวรับสัญญาณ) </p>
+                    </div>
+
+                    <!-- ส่วนล่าง 2-->
+                    <div class = "grid_information">
+                        <div class = "grid_information">
+                            <div>
+                                <p style = "color: #141719; text-align: left;">CPU Brand<br>CPU Model<br>Base Clock<br>Boost Clock<br>Cache</p>
+                            </div>
+                            <div>
+                                <p style = "color: #141719; text-align: left;">{{ laptop.cpu_brand }}<br>{{ laptop.cpu_model }}<br>{{ laptop.base_clock }}<br>{{ laptop.boost_clock }}<br>{{ laptop.cache }}</p>
+                            </div>
+                        </div>
+                        <div class = "grid_information">
+                            <div>
+                                <p style = "color: #141719; text-align: left;">Wi-Fi<br>Bluetooth</p>
+                            </div>
+                            <div>
+                                <p style = "color: #141719; text-align: left;">{{ laptop.wifi }}<br>{{ laptop.bluetooth }}</p>
+                            </div>
+                        </div>
+                    </div> 
+                    <br>
+
+                    <!-- ส่วนล่าง 3-->
+                    <div style="display: grid; align-items: start; grid-template-columns: repeat(2, 1fr);grid-gap: -100px;">
+                        <p style = "color: #141719; text-align: left; font-size: 18px; font-weight: bold;">Graphic (กราฟิก)</p>
+                        <p style = "color: #141719; text-align: left; font-size: 18px; font-weight: bold;">Operating System (ระบบปฏิบัติการ)</p>
+                    </div>    
+                    <!-- ส่วนล่าง 4-->
+                    <div class = "grid_information">
+                        <div class = "grid_information">
+                            <div>
+                                <p style = "color: #141719; text-align: left;">Brand<br>Graphic Chip</p>
+                            </div>
+                            <div>
+                                <p style = "color: #141719; text-align: left;">{{ laptop.graphic_brand }}<br>{{ laptop.graphic_chip }}</p>
+                            </div>
+                        </div>
+                        <div class = "grid_information">
+                            <div>
+                                <p style = "color: #141719; text-align: left;">OS</p>
+                            </div>
+                            <div>
+                                <p style = "color: #141719; text-align: left;">{{ laptop.os }}</p>
+                            </div>
+                        </div>
+                    </div>      
+
+                    <br>
+                    
+                    <!-- ส่วนล่าง 5-->
+                    <div style="display: grid; align-items: start; grid-template-columns: repeat(2, 1fr);grid-gap: -100px;">
+                        <p style = "color: #141719; text-align: left; font-size: 18px; font-weight: bold;">Display (การแสดงผลของหน้าจอ)</p>
+                        <p style = "color: #141719; text-align: left; font-size: 18px; font-weight: bold;">Web Camera (กล้องหน้าจอ)</p>
+                    </div>    
+                    <!-- ส่วนล่าง 6-->
+                    <div class = "grid_information">
+                        <div class = "grid_information">
+                            <div>
+                                <p style = "color: #141719; text-align: left;">Display Size (ขนาดหน้าจอ)<br>Display Specs<br>Display Type<br>Touchscreen</p>
+                            </div>
+                            <div>
+                                <p style = "color: #141719; text-align: left;">{{ laptop.display_size }}<br>{{ laptop.display_specs }}<br>{{ laptop.display_type }}<br>{{ laptop.touchscreen }}</p>
+                            </div>
+                        </div>
+                        <div class = "grid_information">
+                            <div>
+                                <p style = "color: #141719; text-align: left;">Web Camera (กล้องหน้าจอ)</p>
+                            </div>
+                            <div>
+                                <p style = "color: #141719; text-align: left;">{{ laptop.web_camera }}</p>
+                            </div>
+                        </div>
+                    </div>     
+                    
+                    <br>
+                    
+                    <!-- ส่วนล่าง 7-->
+                    <div style="display: grid; align-items: start; grid-template-columns: repeat(2, 1fr);grid-gap: -100px;">
+                        <p style = "color: #141719; text-align: left; font-size: 18px; font-weight: bold;">Memory (หน่วยความจำ)</p>
+                        <p style = "color: #141719; text-align: left; font-size: 18px; font-weight: bold;">Battery (แบตเตอรี่)</p>
+                    </div>    
+                    <!-- ส่วนล่าง 8-->
+                    <div class = "grid_information">
+                        <div class = "grid_information">
+                            <div>
+                                <p style = "color: #141719; text-align: left;">Ram (หน่วยความจำชั่วคราว)<br>Ram Type</p>
+                            </div>
+                            <div>
+                                <p style = "color: #141719; text-align: left;">{{ laptop.ram }}<br>{{ laptop.ram_type }}</p>
+                            </div>
+                        </div>
+                        <div class = "grid_information">
+                            <div>
+                                <p style = "color: #141719; text-align: left;">Battery (แบตเตอรี่)</p>
+                            </div>
+                            <div>
+                                <p style = "color: #141719; text-align: left;">{{ laptop.battery }}</p>
+                            </div>
+                        </div>
+                    </div> 
+
+                    <br>
+                    
+                    <!-- ส่วนล่าง 9-->
+                    <div style="display: grid; align-items: start; grid-template-columns: repeat(2, 1fr);grid-gap: -100px;">
+                        <p style = "color: #141719; text-align: left; font-size: 18px; font-weight: bold;">Storage (พื้นที่ในการจัดเก็บ)</p>
+                        <p style = "color: #141719; text-align: left; font-size: 18px; font-weight: bold;">I/O Ports (พอร์ตที่ใช้งานต่างๆ)</p>
+                    </div>    
+                    <!-- ส่วนล่าง 10-->
+                    <div class = "grid_information">
+                        <div class = "grid_information">
+                            <div>
+                                <p style = "color: #141719; text-align: left;">HDD 1 Capacity<br>HDD 1 Type</p>
+                            </div>
+                            <div>
+                                <p style = "color: #141719; text-align: left;">{{ laptop.hdd_capacity }}<br>{{ laptop.hdd_type }}</p>
+                            </div>
+                        </div>
+                        <div class = "grid_information">
+                            <div>
+                                <p style = "color: #141719; text-align: left;">I/O Ports (พอร์ตที่ใช้งานต่างๆ)</p>
+                            </div>
+                            <div>
+                                {% for io_ports in laptop.formatted_io %}
+                                <p style = "color: #141719; text-align: left;">{{ io_ports }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </section>                 
+            </div>
+            <br>
+            <br>
+            <br>
+            <!-- End Services Section -->
+
+                
+                <div class="loader-overlay">
+                    <div class="loader">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+
+              <!-- JS -->
+              {% include 'components/js.html' %}>
+              <script>
+                function goBack() {
+                  window.history.back();
+                }
+                
+            </script>
+            </body>
+        </html>
