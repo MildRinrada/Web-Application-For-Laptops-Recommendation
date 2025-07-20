@@ -6,5 +6,5 @@
 
 ## 2. Clone โปรเจค
 ```bash
-git clone https://github.com/your-repo.git
+git clone https://github.com/MildRinrada/Web-Application-For-Laptops-Recommendation.git
 cd your-repo
