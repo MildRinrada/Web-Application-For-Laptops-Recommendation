@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{# หน้าเริ่มต้นระบบแนะนำ: เลือกงบประมาณ (โทนมืด) #}
+
+{% block title %}แนะนำแล็ปท็อปที่เหมาะสมกับคุณ{% endblock %}
+
+{% block head_extra %}
+        {% include 'components/css_recom.html' %}
+{% endblock %}
+
+{% block body_class %}bodydark{% endblock %}
+
+{% block content %}
+            <div id="services">
+                <section class="grid grid-pad services">
+                    <br><br><br><br>
+                    <button class="btn read-more" style = "float: left;" onclick="goBack()">< ย้อนกลับ</button>
+                    <br><br>
+                    <div>
+                        <p class="p2">กรอกข้อมูลเพื่อแนะนำแล็ปท็อปที่เหมาะสมกับคุณ</p>
+                        <br><br>
+                        <p class="p1" style="font-size: 20px">งบประมาณในการเลือกซื้อแล็ปท็อป</p>
+                        <br><br>
+                        <div class="gridfive">
+                            {% for target in ['spec1', 'spec2', 'spec3', 'spec4'] %}
+                            <div class="gridfive-item">
+                                <a href="{{ url_for('recommendation.recommendation_step', step=target) }}">
+                                    <img src="{{ url_for('static', filename='recommendation/' ~ loop.index ~ '_price.png') }}" onmouseover="zoomIn(this)" onmouseout="zoomOut(this)" width="200" height="auto">
+                                </a>
+                            </div>
+                            {% endfor %}
+                            <div class="gridfive-item">
+                                <a href="{{ url_for('recommendation.recommendation_list', rule='rule18') }}#services">
+                                    <img src="{{ url_for('static', filename='recommendation/5_price.png') }}" onmouseover="zoomIn(this)" onmouseout="zoomOut(this)" width="200" height="auto">
+                                </a>
+                            </div>
+                    <br>
+                    </div>
+                </section>
+            </div>
+            <!-- End Services Section -->
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'catalog_base.html' %}
+{# หน้าแสดงผลการค้นหาแล็ปท็อป #}
+
+{% block title %}ผลของการค้นหาแล็ปท็อป{% endblock %}
+
+{% block breadcrumb %}ผลของการค้นหา{% endblock %}
+
+{% block sort_form %}
+    {% set sort_action = url_for('catalog.sort_laptops', target='search') %}
+    {% include 'components/sort_form.html' %}
+{% endblock %}

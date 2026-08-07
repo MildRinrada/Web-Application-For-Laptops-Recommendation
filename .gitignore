@@ -1,0 +1,24 @@
+# Environment / Secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+env/
+
+# ข้อมูลจริง (ห้าม commit)
+*.csv
+*.sql.bak
+dump/
+*.dump
+
+# IDE / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# Claude Code local settings
+.claude/

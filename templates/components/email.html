@@ -1,0 +1,26 @@
+{# ฟอร์มติดต่อผ่าน EmailJS — คีย์ถูกอ่านจาก .env ผ่าน config ไม่ฝังในโค้ด #}
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+    function sendMail(event) {
+        event.preventDefault(); // ป้องกันการโหลดหน้าเว็บใหม่
+        let parms = {
+            subject: document.getElementById("subject").value,
+            email: document.getElementById("email").value,
+            name: document.getElementById("name").value,
+            message: document.getElementById("message").value,
+        }
+
+        emailjs.init({
+            publicKey: "{{ config['EMAILJS_PUBLIC_KEY'] }}"
+        });
+
+        emailjs.send("{{ config['EMAILJS_SERVICE_ID'] }}", "{{ config['EMAILJS_TEMPLATE_ID'] }}", parms)
+            .then(function(response) {
+                alert("การส่งอีเมลสำเร็จ");
+            }, function(error) {
+                alert("เกิดข้อผิดพลาดในการส่งอีเมล: " + JSON.stringify(error));
+            });
+    }
+ </script>

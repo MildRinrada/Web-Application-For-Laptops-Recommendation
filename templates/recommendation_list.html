@@ -1,0 +1,17 @@
+{% extends 'catalog_base.html' %}
+{# หน้าแสดงผลลัพธ์แล็ปท็อปที่ระบบแนะนำตาม rule ที่ผู้ใช้เลือก #}
+
+{% block title %}แสดงผลลัพธ์จากการแนะนำ{% endblock %}
+
+{% block breadcrumb %}แสดงผลลัพธ์จากการแนะนำ{% endblock %}
+
+{% block sort_section %}
+                    <br><br>
+{% endblock %}
+
+{% block results %}
+    {% set compare_btn_right = '380px' %}
+    {% set exact_two = false %}
+    {% set autoscroll = false %}
+    {% include 'components/list.html' %}
+{% endblock %}

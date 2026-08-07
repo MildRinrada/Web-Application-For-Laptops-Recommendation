@@ -1,0 +1,27 @@
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="{{ url_for('static', filename='js/mixitup.js') }}"></script>
+<script src="{{ url_for('static', filename='js/smoothscroll.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.nav.js') }}"></script>
+<script src="{{ url_for('static', filename='js/owl-carousel/owl.carousel.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+<script src="{{ url_for('static', filename='js/jquery.counterup.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/lightcase.min.js') }}"></script>
+<script>
+    // ตรวจสอบว่าติ๊ก checkbox อย่างน้อยหนึ่งช่องก่อนส่งฟอร์มกรองข้อมูล
+    function validateCheckboxGroup(event, name) {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"][name="' + name + '"]');
+        var isChecked = Array.prototype.some.call(checkboxes, function (checkbox) {
+            return checkbox.checked;
+        });
+        if (!isChecked) {
+            alert("กรุณาเลือกอย่างน้อยหนึ่งช่อง");
+            event.preventDefault();
+            return false;
+        }
+        return true;
+    }
+    function validateCheckbox_brand(event) { return validateCheckboxGroup(event, 'brand'); }
+    function validateCheckbox_ram(event) { return validateCheckboxGroup(event, 'ram'); }
+    function validateCheckbox_hdd(event) { return validateCheckboxGroup(event, 'hdd_capacity'); }
+</script>

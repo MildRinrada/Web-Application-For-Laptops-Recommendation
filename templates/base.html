@@ -1,0 +1,44 @@
+<!doctype html>
+<!--
+	The7 by TEMPLATE STOCK
+	templatestock.co @templatestock
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>{% block title %}เว็บแอปพลิเคชันแนะนำแล็ปท็อป{% endblock %}</title>
+
+        <!-- CSS -->
+        {% include 'components/css_links.html' %}
+        {% block head_extra %}{% endblock %}
+        </head>
+        <body id="home" class="{% block body_class %}{% endblock %}">
+            <!-- Header -->
+            <header id="top-header" class="header-home">
+                {% block header %}
+                {% include 'components/header_nav.html' %}
+                {% endblock %}
+            </header>
+            <!-- End Header -->
+
+            {% block content %}{% endblock %}
+
+                {% block loader %}
+                <div class="loader-overlay">
+                    <div class="loader">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+                {% endblock %}
+
+              <!-- JS -->
+              {% include 'components/scripts.html' %}
+              {% block scripts_extra %}{% endblock %}
+            </body>
+        </html>

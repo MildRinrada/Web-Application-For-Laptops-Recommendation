@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{# หน้าคำถามของระบบแนะนำ (ใช้แทน recom/*.html ทั้ง 9 หน้าเดิม)
+   ตัวแปรจาก view: step = {question, grid, img_width, options, descriptions} #}
+
+{% block title %}แนะนำแล็ปท็อปที่เหมาะสมกับคุณ{% endblock %}
+
+{% block head_extra %}
+        {% include 'components/css_recom.html' %}
+{% endblock %}
+
+{% block body_class %}bodydark{% endblock %}
+
+{% block content %}
+            <div id="services">
+                <section class="grid grid-pad services">
+
+                    <br><br><br><br>
+                    <a class="btn read-more" style = "float: left;" onclick="goBack()">< ย้อนกลับ</a>
+                    <br><br>
+                    <div class="">
+                        <p class="p2">กรอกข้อมูลเพื่อแนะนำแล็ปท็อปที่เหมาะสมกับคุณ</p>
+                        <br><br>
+                        <p class="p1" style="font-size: 20px">{{ step.question }}</p>
+                        <br><br>
+                        <div class="{{ step.grid }}">
+                            {% for option in step.options %}
+                            <div class="{{ step.grid }}-item">
+                                {% if option.to[0] == 'rule' %}
+                                <a href="{{ url_for('recommendation.recommendation_list', rule=option.to[1]) }}#services">
+                                {% else %}
+                                <a href="{{ url_for('recommendation.recommendation_step', step=option.to[1]) }}">
+                                {% endif %}
+                                    <img src="{{ url_for('static', filename=option.img) }}" onmouseover="zoomIn(this)" onmouseout="zoomOut(this)" width="{{ step.img_width }}" height="auto">
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% if step.descriptions %}
+                        <div class="{{ step.grid }}">
+                            {% for description in step.descriptions %}
+                            <div class="{{ step.grid }}-item">
+                                <p>{{ description | safe }}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <br><br>
+
+                    <br>
+                    </div>
+                </section>
+            </div>
+            <!-- End Services Section -->
+{% endblock %}

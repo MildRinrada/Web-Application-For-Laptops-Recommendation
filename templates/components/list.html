@@ -1,0 +1,76 @@
+{# รายการแล็ปท็อปพร้อมช่องเลือกเปรียบเทียบ
+   ตัวแปรปรับแต่ง (มีค่าเริ่มต้นตามหน้ารายการปกติ):
+   - compare_btn_right : ตำแหน่งปุ่มเปรียบเทียบ (หน้าแนะนำใช้ '380px')
+   - exact_two         : ต้องเลือกครบ 2 เครื่องเท่านั้น (หน้าแนะนำเดิมบังคับแค่ไม่เกิน 2)
+   - autoscroll        : เลื่อนหน้าลงมาที่รายการอัตโนมัติเมื่อโหลดเสร็จ #}
+{% set compare_btn_right = compare_btn_right | default('530px') %}
+{% set exact_two = exact_two if exact_two is defined else true %}
+{% set autoscroll = autoscroll if autoscroll is defined else true %}
+<form action="{{ url_for('main.compare_laptop') }}" method="POST" onsubmit="return handleSubmit();">
+    <button class="button-28" style="width: 150px; height: 40px; position: absolute; bottom: -340px; right: {{ compare_btn_right }}" type="submit">เปรียบเทียบ</button>
+    {% for laptop in laptops %}
+    <div style="display: flex; align-items: center;">
+        <a href="{{ url_for('main.laptop_information', laptop_id=laptop.laptop_id) }}" class="a2">
+        <img class="img2" src="{{ url_for('static', filename=laptop.img) }}" alt="รูปแล็ปท็อปตัวอย่าง" width="260" height="auto">
+        </a>
+        <div style="padding: 20px; {% if loop.index is even %} background: #efeded; color: #fff; {% else %} background: #fff; color: #efeded; {% endif %} margin-left: 20px;">
+            <a href="{{ url_for('main.laptop_information', laptop_id=laptop.laptop_id) }}" class="a2">
+                <p style="text-align: left; font-size: 18px; font-weight: bold; color: #141719;">{{ laptop.model }}</p>
+            </a>
+            <br>
+            <div class="grid_information_list" style="display: flex;">
+                <div style="margin-right: 20px;">
+                    <p class="list1">หน่วยประมวลผลกลาง</p>
+                    <p class="list1">หน่วยประมวลผลกราฟิก</p>
+                    <p class="list1">หน่วยความจำชั่วคราว</p>
+                    <p class="list1">พื้นที่จัดเก็บข้อมูล</p>
+                </div>
+                <div style="color: #141719; text-align: left; font-size: 14px; line-height: 3.4;">
+                    <p>
+                        {{ laptop.cpu_model }}
+                        <br>{{ laptop.graphic_chip }}
+                        <br>{{ laptop.ram }} GB
+                        <br>{{ laptop.hdd_capacity }}
+                    </p>
+                </div>
+            </div>
+
+            <br>
+
+            <div style="display: flex; align-items: center; gap: 30px;">
+                <p class="price_information">{{ laptop.prices }} บาท</p>
+                <div>
+                    <label style="font-size: 20px; color:#141719; " class="container">เปรียบเทียบ
+                        <input type="checkbox" name="compare_laptop_ids" value="{{ laptop.laptop_id }}">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</form>
+
+
+<script>
+    // ตรวจสอบจำนวนแล็ปท็อปที่เลือกก่อนส่งไปหน้าเปรียบเทียบ
+    function handleSubmit() {
+        var checkedCheckboxes = document.querySelectorAll('input[name="compare_laptop_ids"]:checked');
+
+        {% if exact_two %}
+        if (checkedCheckboxes.length > 2 || checkedCheckboxes.length < 2 ) {
+        {% else %}
+        if (checkedCheckboxes.length > 2) {
+        {% endif %}
+            alert('คุณสามารถเลือกแล็ปท็อปได้สูงสุด 2 เครื่องเท่านั้น');
+            return false;
+        }
+        return true;
+    }
+    {% if autoscroll %}
+
+        window.onload = function() {
+            window.location.href = "#services";
+        };
+    {% endif %}
+</script>
