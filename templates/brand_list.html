@@ -1,12 +1,7 @@
 {% extends 'catalog_base.html' %}
 {# หน้ารายการแล็ปท็อปรายยี่ห้อ — ใช้แทน Acer_list / Apple_list / ... ทั้ง 7 หน้าเดิม
-   ตัวแปรจาก view: brand (ค่าในฐานข้อมูล), brand_display (ชื่อที่แสดง), filter_slug #}
+   ตัวแปรจาก view: brand (ค่าในฐานข้อมูล), brand_display (ชื่อที่แสดง) #}
 
 {% block title %}แสดงรายการแล็ปท็อปยี่ห้อ {{ brand_display }}{% endblock %}
 
 {% block breadcrumb %}แสดงรายการแล็ปท็อปยี่ห้อ {{ brand_display }}{% endblock %}
-
-{% block sort_form %}
-    {% set sort_action = url_for('catalog.sort_laptops', target=brand.lower()) %}
-    {% include 'components/sort_form.html' %}
-{% endblock %}

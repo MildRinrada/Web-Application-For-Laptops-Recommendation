@@ -1,6 +1,7 @@
 {# แผงกรองข้อมูลแล็ปท็อปแบบ realtime (ฝั่ง client)
    กรองเฉพาะรายการที่แสดงอยู่บนหน้านั้น — ติ๊ก checkbox หรือพิมพ์ช่วงราคา
    แล้วรายการจะถูกกรองทันที ไม่ต้องกดปุ่มและไม่เปลี่ยนหน้า
+   logic อยู่ใน static/js/laptop-list.js
    ถ้าไม่มีรายการตรงเงื่อนไข จะแสดงข้อความ "ไม่พบ" (อยู่ใน components/list.html) #}
 <div id="filter-panel">
 
@@ -51,57 +52,3 @@
 
 </div>
 
-<script>
-    // กรองรายการแล็ปท็อปบนหน้าปัจจุบันแบบ realtime
-    (function () {
-        var panel = document.getElementById('filter-panel');
-        if (!panel) return;
-
-        function checkedValues(name) {
-            var boxes = panel.querySelectorAll('input[name="' + name + '"]:checked');
-            return Array.prototype.map.call(boxes, function (box) { return box.value; });
-        }
-
-        function parsePrice(name) {
-            var raw = panel.querySelector('input[name="' + name + '"]').value.replace(/,/g, '').trim();
-            var value = parseFloat(raw);
-            return isNaN(value) ? null : value;
-        }
-
-        function applyFilter() {
-            var brands = checkedValues('brand');
-            var rams = checkedValues('ram');
-            var hdds = checkedValues('hdd_capacity');
-            var minPrice = parsePrice('min_price');
-            var maxPrice = parsePrice('max_price');
-
-            var items = document.querySelectorAll('.laptop-item');
-            var visibleCount = 0;
-            Array.prototype.forEach.call(items, function (item) {
-                var price = parseFloat(item.dataset.price);
-                var show =
-                    (brands.length === 0 || brands.indexOf(item.dataset.brand) !== -1) &&
-                    (rams.length === 0 || rams.indexOf(item.dataset.ram) !== -1) &&
-                    (hdds.length === 0 || hdds.indexOf(item.dataset.hdd) !== -1) &&
-                    (minPrice === null || price >= minPrice) &&
-                    (maxPrice === null || price <= maxPrice);
-                item.style.display = show ? 'flex' : 'none';
-                if (show) visibleCount++;
-            });
-
-            var emptyMessage = document.getElementById('no-filter-match');
-            if (emptyMessage) {
-                emptyMessage.style.display = (items.length && visibleCount === 0) ? 'block' : 'none';
-            }
-        }
-
-        Array.prototype.forEach.call(
-            panel.querySelectorAll('input[type="checkbox"]'),
-            function (box) { box.addEventListener('change', applyFilter); }
-        );
-        Array.prototype.forEach.call(
-            panel.querySelectorAll('input[name="min_price"], input[name="max_price"]'),
-            function (input) { input.addEventListener('input', applyFilter); }
-        );
-    })();
-</script>

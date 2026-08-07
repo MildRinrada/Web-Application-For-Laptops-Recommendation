@@ -1,13 +1,9 @@
 {% extends 'catalog_base.html' %}
-{# หน้าแจ้งว่าไม่พบข้อมูลจากการค้นหา/การกรอง #}
+{# หน้าแจ้งว่าไม่พบข้อมูลจากการค้นหา #}
 
 {% block title %}ไม่พบข้อมูลแล็ปท็อป{% endblock %}
 
 {% block breadcrumb %}ผลของการค้นหา{% endblock %}
-
-{% block sort_form %}
-    {% include 'components/sort_placeholder.html' %}
-{% endblock %}
 
 {% block results %}
                         <div style="text-align: left;">

@@ -14,15 +14,18 @@
             <div>
                 <section class="grid grid-pad services">
                     <p style = "color: #141719; text-align: left"><a href="{{ url_for('main.index') }}" class= "a2">หน้าหลัก</a> > {% block breadcrumb %}{% endblock %}</p>
-                    {% block sort_section %}
-                    <!-- เรียงลำดับราคา -->
-                    <div class="dropdown-container">
-                        <p style="color: #141719; position: relative; bottom: -5px">เรียงลำดับราคาโดย</p>
-                        <div>
-                            {% block sort_form %}{% endblock %}
-                        </div>
+                    <!-- แถบเครื่องมือ: ปุ่มเปรียบเทียบ + เรียงลำดับราคาแบบ realtime -->
+                    <div class="list-toolbar">
+                        {% if laptops %}
+                        <button class="button-28" form="compare-form" type="submit" style="width: 150px; height: 40px;">เปรียบเทียบ</button>
+                        {% endif %}
+                        <p style="color: #141719;">เรียงลำดับราคาโดย</p>
+                        <select style="font-size: 14px" class="dropdown-content" name="sort" id="sort" onchange="sortLaptopList(this.value)">
+                            <option value="start">ค่าตั้งต้น</option>
+                            <option value="lowsort">ราคาถูกมาก - แพงมาก</option>
+                            <option value="expensivesort">ราคาแพงมาก - ถูกมาก</option>
+                        </select>
                     </div>
-                    {% endblock %}
 
                      <!-- ส่วนกรองและแสดงรายการแล็ปท็อป -->
                     <div style="display: grid; align-items: start; grid-template-columns: 300px 1080px;">

@@ -2230,3 +2230,20 @@ footer p, footer a {
   box-shadow: none;
   transform: translateY(0);
 }
+
+/* แถบเครื่องมือเหนือรายการแล็ปท็อป: ปุ่มเปรียบเทียบ + เรียงลำดับราคา */
+.list-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.list-toolbar .button-28 {
+  width: 150px;
+}
+
+.list-toolbar p {
+  margin: 0;
+}
