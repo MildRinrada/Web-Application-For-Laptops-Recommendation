@@ -1,13 +1,13 @@
 {# รายการแล็ปท็อปพร้อมช่องเลือกเปรียบเทียบ
    ตัวแปรปรับแต่ง (มีค่าเริ่มต้นตามหน้ารายการปกติ):
-   - compare_btn_right : ตำแหน่งปุ่มเปรียบเทียบ (หน้าแนะนำใช้ '380px')
-   - exact_two         : ต้องเลือกครบ 2 เครื่องเท่านั้น (หน้าแนะนำเดิมบังคับแค่ไม่เกิน 2)
-   - autoscroll        : เลื่อนหน้าลงมาที่รายการอัตโนมัติเมื่อโหลดเสร็จ #}
-{% set compare_btn_right = compare_btn_right | default('530px') %}
+   - exact_two  : ต้องเลือกครบ 2 เครื่องเท่านั้น (หน้าแนะนำเดิมบังคับแค่ไม่เกิน 2)
+   - autoscroll : เลื่อนหน้าลงมาที่รายการอัตโนมัติเมื่อโหลดเสร็จ #}
 {% set exact_two = exact_two if exact_two is defined else true %}
 {% set autoscroll = autoscroll if autoscroll is defined else true %}
 <form action="{{ url_for('main.compare_laptop') }}" method="POST" onsubmit="return handleSubmit();">
-    <button class="button-28" style="width: 150px; height: 40px; position: absolute; bottom: -340px; right: {{ compare_btn_right }}" type="submit">เปรียบเทียบ</button>
+    <div style="text-align: left; margin-bottom: 12px;">
+        <button class="button-28" style="width: 150px; height: 40px;" type="submit">เปรียบเทียบ</button>
+    </div>
     {% for laptop in laptops %}
     <div class="laptop-item" data-brand="{{ laptop.brand }}" data-price="{{ laptop.price_value }}" data-ram="{{ laptop.ram }}" data-hdd="{{ laptop.hdd_capacity }}" style="display: flex; align-items: center;">
         <a href="{{ url_for('main.laptop_information', laptop_id=laptop.laptop_id) }}" class="a2">
