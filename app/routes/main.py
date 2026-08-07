@@ -1,5 +1,5 @@
 """หน้าหลัก ค้นหา รายละเอียด และเปรียบเทียบแล็ปท็อป"""
-from flask import Blueprint, render_template, request
+from flask import Blueprint, abort, render_template, request
 
 from .. import repository
 
@@ -25,7 +25,7 @@ def search_laptop():
 def laptop_information(laptop_id):
     laptop = repository.fetch_detail(laptop_id)
     if laptop is None:
-        return "ไม่พบข้อมูลเครื่องคอมพิวเตอร์"
+        abort(404)
     return render_template("laptop_information.html", laptop=laptop)
 
 

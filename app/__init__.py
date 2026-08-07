@@ -28,4 +28,8 @@ def create_app(config_class=Config):
     app.register_blueprint(catalog_bp)
     app.register_blueprint(recommendation_bp)
 
+    from .errors import register_error_handlers
+
+    register_error_handlers(app)
+
     return app

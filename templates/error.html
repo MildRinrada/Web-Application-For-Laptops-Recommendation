@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{# หน้าแสดงข้อผิดพลาด (404 / 405 / 500) — ใช้ template เดียวทุกรหัส
+   ตัวแปรจาก error handler: code, error_title, error_message #}
+
+{% block title %}{{ code }} - {{ error_title }}{% endblock %}
+
+{% block content %}
+            <div id="services">
+                <section class="grid grid-pad services" style="min-height: 60vh;">
+                    <br><br><br><br><br>
+                    <h1 style="color: #39A5F3; font-size: 120px; font-weight: bold;">{{ code }}</h1>
+                    <br>
+                    <p style="color: #141719; font-size: 28px; font-weight: bold;">{{ error_title }}</p>
+                    <br>
+                    <p style="color: #787878; font-size: 16px;">{{ error_message }}</p>
+                    <br><br>
+                    <a class="btn read-more" href="{{ url_for('main.index') }}">กลับสู่หน้าหลัก</a>
+                    <br><br><br>
+                </section>
+            </div>
+{% endblock %}
