@@ -17,7 +17,7 @@
 
 ภาพรวมหน้าหลักของระบบ
 
-![Home Page](doc/images/1.png)
+![Home Page](docs/images/1.png)
 
 ดูรายละเอียดหน้าจอทั้งหมดได้ที่
 

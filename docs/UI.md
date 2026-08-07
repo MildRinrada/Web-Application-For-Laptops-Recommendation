@@ -1,4 +1,4 @@
-# 🖥 User Interface Documentation
+# 🖥 User Interface docsumentation
 
 เอกสารแสดงหน้าตาและการใช้งานของระบบ Laptop Recommendation Web Application
 
@@ -6,7 +6,7 @@
 
 # 1. Home Page
 
-![Home](../doc/images/1.png)
+![Home](../docs/images/1.png)
 
 หน้าแรกของระบบ
 
@@ -23,7 +23,7 @@
 
 # 2. Recommendation System
 
-![Recommendation](../doc/images/2.png)
+![Recommendation](../docs/images/4.png)
 
 หน้าระบบแนะนำ Laptop
 
@@ -41,7 +41,7 @@
 
 # 3. Laptop Catalog
 
-![Catalog](../doc/images/3.png)
+![Catalog](../docs/images/2.png)
 
 หน้ารายการ Laptop
 
@@ -56,7 +56,7 @@
 
 # 4. Laptop Detail
 
-![Detail](../doc/images/4.png)
+![Detail](../docs/images/3.png)
 
 หน้าแสดงรายละเอียด Laptop
 
@@ -73,7 +73,7 @@
 
 # 5. Laptop Comparison
 
-![Comparison](../doc/images/5.png)
+![Comparison](../docs/images/5.png)
 
 หน้าเปรียบเทียบ Laptop
 
