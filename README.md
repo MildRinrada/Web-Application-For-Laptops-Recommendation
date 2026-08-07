@@ -1,166 +1,394 @@
-# 💻 Web Application for Laptop Recommendation
+# 💻 Laptop Recommendation Web Application
 
-เว็บแอปพลิเคชันแนะนำแล็ปท็อปด้วย **Rule-based Expert System** —
-ผู้ใช้ตอบคำถามทีละขั้น (งบประมาณ → ลักษณะการใช้งาน → ระบบปฏิบัติการ → หน้าจอสัมผัส)
-แล้วระบบจะแนะนำแล็ปท็อปที่เหมาะสมที่สุด พร้อมหน้ารายการตามยี่ห้อ ค้นหา กรอง
-เรียงลำดับราคา ดูรายละเอียด และเปรียบเทียบแล็ปท็อป 2 เครื่อง
+เว็บแอปพลิเคชันสำหรับแนะนำแล็ปท็อปด้วยแนวคิด **Rule-based Expert System**
 
-> โปรเจกต์ปัญหาพิเศษ (Senior Project) — refactor ใหม่ให้มีโครงสร้างระดับ Production
-> โดยคงหน้าตาและพฤติกรรมของระบบเดิมไว้ทั้งหมด
+ระบบช่วยผู้ใช้เลือกแล็ปท็อปที่เหมาะสมจากการตอบคำถามเกี่ยวกับ
+งบประมาณ ลักษณะการใช้งาน ระบบปฏิบัติการ และความต้องการด้านหน้าจอสัมผัส
+
+จากคำตอบ ระบบจะวิเคราะห์ด้วยกฎ (Rules) ที่กำหนดไว้
+และแนะนำรุ่นแล็ปท็อปที่ตรงกับความต้องการมากที่สุด
+
+> Senior Project — Refactor ระบบเดิมใหม่โดยปรับโครงสร้างให้เป็นระดับ Production  
+> พร้อมคงรูปแบบการทำงานและหน้าตาของระบบเดิมไว้
 
 ---
 
-## ✨ Features
+## 📸 Application Preview
 
-- **ระบบแนะนำแล็ปท็อป (Rule-based Expert System)** — ตอบคำถาม 2–4 ขั้น
-  ระบบจับคู่คำตอบเข้ากับกฎ 18 ข้อ (Rule 1–18) แล้วแสดงแล็ปท็อปที่เข้าเงื่อนไข
-- **เรียกดูตามยี่ห้อ** — Acer, Apple, Asus, Dell, HP, Lenovo, MSI
-- **ค้นหา** ตามชื่อรุ่น
-- **กรองข้อมูลแบบ Realtime** ตามยี่ห้อ, ช่วงราคา, RAM (4/8/16/32 GB), ความจุ
-  (128 GB – 1 TB) — ติ๊กเลือกแล้วรายการบนหน้านั้นถูกกรองทันทีโดยไม่โหลดหน้าใหม่
-  และกรองเฉพาะรายการที่แสดงอยู่ (เช่น ในหน้าผลการแนะนำ จะกรองภายใน
-  ผลการแนะนำเท่านั้น)
-- **เรียงลำดับราคาแบบ Realtime** ถูก→แพง / แพง→ถูก / ค่าตั้งต้น — เรียงทันที
-  โดยไม่โหลดหน้าใหม่
-- **หน้ารายละเอียด** สเปกครบ ข้อดี–ข้อเสีย และช่องทางซื้อ
-- **เปรียบเทียบแล็ปท็อป 2 เครื่อง** แบบเคียงข้างกัน
-- **ฟอร์มติดต่อ** ส่งอีเมลผ่าน EmailJS
+ภาพรวมหน้าหลักของระบบ
 
-## 🛠 Technology Stack
+![Home Page](doc/images/1.png)
+
+ดูรายละเอียดหน้าจอทั้งหมดได้ที่
+
+➡️ [UI Documentation](docs/UI.md)
+
+---
+
+# ✨ Features
+
+## 🤖 Laptop Recommendation System
+
+ระบบแนะนำแล็ปท็อปแบบ Rule-based Expert System
+
+ผู้ใช้ตอบคำถามเป็นขั้นตอน เช่น
+
+- งบประมาณ
+- รูปแบบการใช้งาน
+- ระบบปฏิบัติการที่ต้องการ
+- ความต้องการหน้าจอสัมผัส
+
+จากนั้นระบบจะนำคำตอบไปตรวจสอบกับกฎทั้งหมด 18 ข้อ
+และแสดงรายการแล็ปท็อปที่เหมาะสม
+
+---
+
+## 💻 Laptop Catalog
+
+สามารถเลือกดูแล็ปท็อปตามแบรนด์ ได้แก่
+
+- Acer
+- Apple
+- Asus
+- Dell
+- HP
+- Lenovo
+- MSI
+
+พร้อมความสามารถ:
+
+- ค้นหาจากชื่อรุ่น
+- กรองข้อมูลแบบ Real-time
+- เรียงลำดับราคาทันที
+
+---
+
+## 🔎 Real-time Filter & Sorting
+
+ผู้ใช้สามารถกรองข้อมูลโดยไม่ต้องโหลดหน้าใหม่
+
+รองรับการกรองตาม:
+
+- แบรนด์
+- ราคา
+- RAM
+  - 4 GB
+  - 8 GB
+  - 16 GB
+  - 32 GB
+- ความจุ Storage
+  - 128 GB
+  - 256 GB
+  - 512 GB
+  - 1 TB
+
+ระบบจะกรองเฉพาะรายการที่กำลังแสดงอยู่
+
+เช่น หากอยู่ในหน้าผลลัพธ์จากระบบแนะนำ
+ตัวกรองจะทำงานเฉพาะกับผลลัพธ์นั้น
+
+---
+
+## 📄 Laptop Detail
+
+หน้ารายละเอียดของแต่ละรุ่นประกอบด้วย
+
+- รายละเอียดสเปก
+- CPU
+- GPU
+- RAM
+- Storage
+- Display
+- Connection
+- ข้อดีและข้อเสีย
+- ช่องทางการซื้อ
+
+---
+
+## ⚖️ Laptop Comparison
+
+เปรียบเทียบแล็ปท็อป 2 รุ่นแบบเคียงข้างกัน
+
+ช่วยให้ผู้ใช้ตัดสินใจเลือกซื้อได้ง่ายขึ้น
+
+---
+
+## 📩 Contact Form
+
+มีแบบฟอร์มติดต่อผู้พัฒนา
+
+รองรับการส่งอีเมลผ่าน EmailJS
+
+---
+
+# 🛠 Technology Stack
 
 | ส่วน | เทคโนโลยี |
-| --- | --- |
-| Backend | Python 3.10+, Flask (Blueprints + Application Factory) |
-| Database | MySQL 5.7+ / MariaDB, SQLAlchemy (parameterized raw SQL) |
-| Frontend | Jinja2 Templates (Template Inheritance), HTML/CSS, jQuery |
-| Config | python-dotenv (`.env`) |
+|---|---|
+| Backend | Python 3.10+, Flask |
+| Architecture | Application Factory + Blueprint |
+| Database | MySQL 5.7+ / MariaDB |
+| ORM / Database Access | SQLAlchemy + Parameterized SQL |
+| Frontend | Jinja2 Template, HTML, CSS, jQuery |
+| Configuration | python-dotenv |
 
-## 📁 Folder Structure
+---
+
+# 📁 Project Structure
 
 ```
-├── run.py                     # จุดเริ่มต้นรันแอป
+├── run.py
 ├── requirements.txt
-├── .env.example               # ตัวอย่าง configuration (คัดลอกเป็น .env)
-├── app/                       # โค้ดฝั่ง backend
-│   ├── __init__.py            # create_app (Application Factory)
-│   ├── config.py              # อ่านค่า .env
-│   ├── extensions.py          # SQLAlchemy instance
-│   ├── models.py              # View models (LaptopSummary / LaptopDetail)
-│   ├── repository.py          # Data Access Layer — SQL ทั้งหมดรวมที่เดียว
+├── .env.example
+
+├── app/
+│   ├── __init__.py
+│   ├── config.py
+│   ├── extensions.py
+│   ├── models.py
+│   ├── repository.py
+│   │
 │   └── routes/
-│       ├── main.py            # หน้าแรก / ค้นหา / รายละเอียด / เปรียบเทียบ
-│       ├── catalog.py         # รายการตามยี่ห้อ / กรอง / เรียงราคา
-│       └── recommendation.py  # ระบบแนะนำ (Rule-based) + โครงสร้างคำถาม
-├── templates/                 # Jinja2 templates
-│   ├── base.html              # โครงหน้าเว็บหลัก
-│   ├── catalog_base.html      # โครงหน้ารายการ (สืบทอดจาก base)
-│   ├── brand_list.html        # หน้ารายการรายยี่ห้อ (ไฟล์เดียวใช้ทั้ง 7 ยี่ห้อ)
-│   ├── recom_step.html        # หน้าคำถามแนะนำ (ไฟล์เดียวใช้ทั้ง 9 ขั้น)
-│   ├── ...                    # หน้าอื่น ๆ
-│   └── components/            # ส่วนประกอบที่ใช้ซ้ำ (filter, list, sort, nav ฯลฯ)
+│       ├── main.py
+│       ├── catalog.py
+│       └── recommendation.py
+
+├── templates/
+│   ├── base.html
+│   ├── catalog_base.html
+│   ├── brand_list.html
+│   ├── recom_step.html
+│   └── components/
+
 ├── database/
-│   ├── schema.sql             # โครงสร้างฐานข้อมูล (ตาราง + FK + Index)
-│   └── example_seed.sql       # ข้อมูลตัวอย่าง "สมมติทั้งหมด" ครอบคลุม Rule 1-18
-└── static/                    # CSS / JS / รูปภาพ / ฟอนต์
+│   ├── schema.sql
+│   └── example_seed.sql
+
+└── static/
+    ├── css/
+    ├── js/
+    └── images/
 ```
 
-## 🏗 Architecture
+---
 
-แอปแบ่งเป็น 3 ชั้นตามหลัก Separation of Concerns:
+# 🏗 System Architecture
 
-1. **Routes (Blueprints)** — รับ request, ตรวจพารามิเตอร์, เลือก template
-   - URL แบบไดนามิก เช่น `/<brand>_list` ใช้ view เดียวรองรับทั้ง 7 ยี่ห้อ
-     (แทนการเขียนฟังก์ชันแยกยี่ห้อละตัวแบบเดิม) โดย URL เดิมทั้งหมดยังใช้ได้
-2. **Repository (Data Access Layer)** — ฟังก์ชัน `fetch_summaries()` เดียว
-   ประกอบเงื่อนไข (ยี่ห้อ/rule/ค้นหา/เรียงราคา ฯลฯ) แบบ parameterized
-   ทั้งหมด แทน query ซ้ำ ๆ ~80 ฟังก์ชันในโค้ดเดิม ส่วนการกรองบนหน้า
-   รายการเป็น client-side realtime filter (ดู `components/filter_panel.html`)
-3. **Templates (Jinja2 Inheritance)** — `base.html` → `catalog_base.html` →
-   หน้าเพจ ลดไฟล์ HTML ซ้ำจาก 7 หน้า brand + 9 หน้าคำถาม เหลืออย่างละ 1 ไฟล์
+ระบบถูกออกแบบโดยแบ่งหน้าที่ออกเป็น 3 ส่วนหลัก
 
-**Rule-based Recommendation:** โครงสร้างคำถามอยู่ใน
-[app/routes/recommendation.py](app/routes/recommendation.py) เป็น dict `STEPS`
-แต่ละตัวเลือกชี้ไปคำถามถัดไปหรือจบที่ `Rule: N` ซึ่งใช้ค้นแล็ปท็อปในคอลัมน์
-`laptops.rule` — logic การจับคู่กฎเหมือนระบบเดิมทุกประการ
+## 1. Routes Layer
 
-## 🚀 Installation
+ทำหน้าที่
 
-ต้องมี: Python 3.10+, MySQL (เช่น XAMPP / MySQL Server)
+- รับ Request จากผู้ใช้
+- ตรวจสอบ Parameter
+- เลือกข้อมูลที่ต้องใช้
+- ส่งข้อมูลไปยัง Template
+
+ใช้ Blueprint เพื่อแบ่งส่วนของระบบ เช่น
+
+- หน้าเว็บไซต์หลัก
+- ระบบ Catalog
+- ระบบ Recommendation
+
+---
+
+## 2. Repository Layer
+
+เป็น Data Access Layer สำหรับจัดการ Query ทั้งหมด
+
+แทนที่ระบบเดิมที่มี Query ซ้ำจำนวนมาก
+เปลี่ยนเป็นฟังก์ชันกลาง เช่น
+
+```
+fetch_summaries()
+```
+
+ซึ่งสามารถรองรับ
+
+- ค้นหา
+- กรอง
+- เรียงราคา
+- เลือกตามแบรนด์
+- เลือกตาม Rule
+
+พร้อมใช้ Parameterized SQL เพื่อเพิ่มความปลอดภัย
+
+---
+
+## 3. Template Layer
+
+ใช้ Jinja2 Template Inheritance
+
+โครงสร้างหลัก:
+
+```
+base.html
+      |
+catalog_base.html
+      |
+brand_list.html
+```
+
+ช่วยลด HTML ซ้ำซ้อน
+
+จากเดิมที่ต้องสร้างหน้าแยกสำหรับแต่ละแบรนด์
+เปลี่ยนเป็น Template เดียวที่รองรับทุกแบรนด์
+
+---
+
+# 🧠 Rule-based Expert System
+
+ระบบแนะนำถูกสร้างด้วยโครงสร้างคำถามแบบ Step-by-step
+
+อยู่ในไฟล์
+
+```
+app/routes/recommendation.py
+```
+
+โดยใช้ตัวแปร
+
+```
+STEPS
+```
+
+สำหรับกำหนดเส้นทางของคำถาม
+
+แต่ละตัวเลือกจะเชื่อมต่อไปยัง
+
+- คำถามถัดไป
+- หรือ Rule ที่ใช้ค้นหา Laptop
+
+ตัวอย่าง:
+
+```
+User Answer
+      ↓
+Question Flow
+      ↓
+Rule Number
+      ↓
+Recommended Laptop
+```
+
+---
+
+# 🚀 Installation
+
+## 1. Clone Project
 
 ```bash
-# 1) Clone
 git clone https://github.com/MildRinrada/Web-Application-For-Laptops-Recommendation.git
+
 cd Web-Application-For-Laptops-Recommendation
+```
 
-# 2) สร้าง virtual environment
+---
+
+## 2. Create Virtual Environment
+
+Windows:
+
+```bash
 python -m venv venv
-venv\Scripts\activate        # Windows
-# source venv/bin/activate   # macOS/Linux
+venv\Scripts\activate
+```
 
-# 3) ติดตั้ง dependencies
+macOS/Linux:
+
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+---
+
+## 3. Install Dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-## ⚙️ Configuration
+---
 
-```bash
-# คัดลอกไฟล์ตัวอย่างแล้วแก้ค่าตามเครื่องของคุณ
-copy .env.example .env       # Windows
-# cp .env.example .env       # macOS/Linux
+# ⚙️ Configuration
+
+สร้างไฟล์ `.env`
+
+จากตัวอย่าง
+
+```
+.env.example
 ```
 
-แก้ไข `.env`:
+กำหนดค่า Database
 
-```ini
+```env
 DB_HOST=localhost
 DB_PORT=3306
 DB_NAME=laptopdb
 DB_USER=root
-DB_PASSWORD=รหัสผ่านของคุณ
+DB_PASSWORD=your_password
+
 FLASK_DEBUG=1
 ```
 
-> 🔒 `.env` ถูก gitignore ไว้แล้ว — ห้าม commit รหัสผ่านหรือ API key ขึ้น Git
+---
 
-## 🗄 Database Setup
+# 🗄 Database Setup
+
+สร้าง Database และ Table
 
 ```bash
-# สร้างฐานข้อมูลและตาราง
 mysql -u root -p < database/schema.sql
 ```
 
-โครงสร้างเป็นแบบ normalized: ตารางหลัก `laptops` อ้างอิงตาราง
-`processor`, `graphic`, `memory`, `storage`, `display`, `connection`,
-`laptop_store` ผ่าน Foreign Key พร้อม Index ที่คอลัมน์ `brand`, `prices`, `rule`
-
-## 🌱 Sample Data Setup
+เพิ่มข้อมูลตัวอย่าง
 
 ```bash
 mysql -u root -p laptopdb < database/example_seed.sql
 ```
 
-ข้อมูลตัวอย่าง **เป็นข้อมูลสมมติทั้งหมด** (18 เครื่อง ครอบคลุม Rule 1–18 และครบ
-ทั้ง 7 ยี่ห้อ) สร้างขึ้นเพื่อให้ทุกฟีเจอร์มีข้อมูลแสดงผล — ไม่ใช่ข้อมูลจริงจาก
-แบบสอบถาม และย้อนกลับไปหาข้อมูลจริงไม่ได้
+ข้อมูลในไฟล์ Seed เป็นข้อมูลตัวอย่างสมมติ
+จัดทำขึ้นเพื่อทดสอบระบบให้ครอบคลุม Rule 1–18
 
-## ▶️ How to Run
+---
+
+# ▶️ Run Application
 
 ```bash
 python run.py
 ```
 
-เปิดเบราว์เซอร์ที่ http://127.0.0.1:5000
+เปิดเว็บไซต์
 
-## 🔮 Future Improvements
+```
+http://127.0.0.1:5000
+```
 
-- เพิ่มระบบจัดการข้อมูลแล็ปท็อป (Admin CRUD) แทนการแก้ข้อมูลผ่าน SQL
-- แยกตาราง `rules` และหน้า UI สำหรับปรับเงื่อนไขของ Expert System
-- เพิ่ม pagination ในหน้ารายการ และ full-text search
-- เขียน unit tests / integration tests (pytest) และตั้ง CI
-- ปรับ frontend เป็น responsive เต็มรูปแบบสำหรับมือถือ
-- Deploy ด้วย Docker + Gunicorn/Nginx
+---
 
-## 📄 หมายเหตุเรื่องข้อมูล
+# 🔮 Future Improvements
 
-ข้อมูลจริงจากแบบสอบถาม (ไฟล์ CSV) **ไม่ถูกรวมไว้ใน repository นี้**
-เพื่อความเป็นส่วนตัวของผู้ตอบแบบสอบถาม — repository มีเฉพาะข้อมูลตัวอย่างสมมติ
+- เพิ่มระบบ Admin สำหรับจัดการข้อมูล Laptop
+- เพิ่มหน้าแก้ไข Rule ผ่าน UI
+- เพิ่ม Pagination
+- เพิ่ม Full-text Search
+- เพิ่ม Unit Test / Integration Test
+- Deploy ด้วย Docker + Gunicorn + Nginx
+- ปรับ Responsive สำหรับ Mobile
+
+---
+
+# 🔒 Data Privacy
+
+ข้อมูลแบบสอบถามจริงไม่ได้ถูกเผยแพร่ใน Repository นี้
+
+Repository นี้ประกอบด้วยเฉพาะ
+
+- Source Code
+- Database Structure
+- Example Seed Data
+
+เพื่อรักษาความเป็นส่วนตัวของผู้ตอบแบบสอบถาม
