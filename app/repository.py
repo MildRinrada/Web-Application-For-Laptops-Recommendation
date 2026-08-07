@@ -11,7 +11,7 @@ from .models import LaptopDetail, LaptopSummary
 # คอลัมน์และการ join ชุดเดียวกับ query เดิมทุกตัว (หน้ารายการ)
 SUMMARY_SELECT = """
     SELECT l.laptop_id, l.model, p.cpu_model, g.graphic_chip, m.ram,
-           s2.hdd_capacity, l.prices, l.img
+           s2.hdd_capacity, l.prices, l.img, l.brand
     FROM laptops l
     JOIN processor p ON l.processor_id = p.processor_id
     JOIN graphic g   ON l.gpu_id       = g.gpu_id

@@ -12,7 +12,11 @@ def format_price(value):
 
 @dataclass
 class LaptopSummary:
-    """ข้อมูลย่อของแล็ปท็อป ใช้ในหน้ารายการ/ค้นหา/กรอง/แนะนำ"""
+    """ข้อมูลย่อของแล็ปท็อป ใช้ในหน้ารายการ/ค้นหา/กรอง/แนะนำ
+
+    price_value เก็บราคาเป็นตัวเลขสำหรับการกรองฝั่ง client
+    ส่วน prices เป็นสตริงที่จัดรูปแบบแล้วสำหรับแสดงผล
+    """
 
     laptop_id: int
     model: str
@@ -22,6 +26,8 @@ class LaptopSummary:
     hdd_capacity: str
     prices: str
     img: str
+    brand: str
+    price_value: int
 
     @classmethod
     def from_row(cls, row):
@@ -34,6 +40,8 @@ class LaptopSummary:
             hdd_capacity=row[5],
             prices=format_price(row[6]),
             img=row[7],
+            brand=row[8],
+            price_value=row[6],
         )
 
 

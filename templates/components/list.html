@@ -9,7 +9,7 @@
 <form action="{{ url_for('main.compare_laptop') }}" method="POST" onsubmit="return handleSubmit();">
     <button class="button-28" style="width: 150px; height: 40px; position: absolute; bottom: -340px; right: {{ compare_btn_right }}" type="submit">เปรียบเทียบ</button>
     {% for laptop in laptops %}
-    <div style="display: flex; align-items: center;">
+    <div class="laptop-item" data-brand="{{ laptop.brand }}" data-price="{{ laptop.price_value }}" data-ram="{{ laptop.ram }}" data-hdd="{{ laptop.hdd_capacity }}" style="display: flex; align-items: center;">
         <a href="{{ url_for('main.laptop_information', laptop_id=laptop.laptop_id) }}" class="a2">
         <img class="img2" src="{{ url_for('static', filename=laptop.img) }}" alt="รูปแล็ปท็อปตัวอย่าง" width="260" height="auto">
         </a>
@@ -49,6 +49,13 @@
         </div>
     </div>
     {% endfor %}
+
+    <!-- แสดงเมื่อการกรองแบบ realtime ไม่พบรายการที่ตรงเงื่อนไข -->
+    <div id="no-filter-match" style="display: none; text-align: left;">
+        <br>
+        <h1 style="color: #787878;">ไม่พบแล็ปท็อปที่ตรงกับเงื่อนไขการกรอง</h1>
+        <p style="color: #787878;">กรุณาลองปรับเงื่อนไขการกรองใหม่อีกครั้ง</p>
+    </div>
 </form>
 
 

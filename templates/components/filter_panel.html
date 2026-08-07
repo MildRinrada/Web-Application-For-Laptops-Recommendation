@@ -1,95 +1,10 @@
-{# แผงกรองข้อมูลแล็ปท็อป
-   - ตัวแปร brand / filter_slug ถูกส่งมาจากหน้ารายการรายยี่ห้อ:
-     ฟอร์มจะยิงไปยัง endpoint แบบระบุยี่ห้อ และเปิดการตรวจสอบ checkbox (ตามหน้าเดิม)
-   - ถ้าไม่มี brand (หน้าค้นหา/กรองรวม/แนะนำ): ฟอร์มยิงไป endpoint รวมทุกยี่ห้อ #}
-<style>
+{# แผงกรองข้อมูลแล็ปท็อปแบบ realtime (ฝั่ง client)
+   กรองเฉพาะรายการที่แสดงอยู่บนหน้านั้น — ติ๊ก checkbox หรือพิมพ์ช่วงราคา
+   แล้วรายการจะถูกกรองทันที ไม่ต้องกดปุ่มและไม่เปลี่ยนหน้า
+   ถ้าไม่มีรายการตรงเงื่อนไข จะแสดงข้อความ "ไม่พบ" (อยู่ใน components/list.html) #}
+<div id="filter-panel">
 
-/* CSS */
-.button-28 {
-  appearance: none;
-  background-color: transparent;
-  border: 2px solid #1A1A1A;
-  border-radius: 15px;
-  box-sizing: border-box;
-  color: #3B3B3B;
-  cursor: pointer;
-  display: inline-block;
-
-  font-size: 16px;
-  font-weight: 600;
-  line-height: normal;
-  margin: 0;
-  min-width: 0;
-  outline: none;
-  padding: 3px 24px;
-  text-align: center;
-  text-decoration: none;
-  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  width: 50%;
-  height: 20%;
-  will-change: transform;
-}
-
-.button-28:disabled {
-  pointer-events: none;
-}
-
-.button-28:hover {
-  color: #fff;
-  background-color: #1A1A1A;
-  transform: translateY(-2px);
-}
-
-.button-28:active {
-  box-shadow: none;
-  transform: translateY(0);
-}
-.button-28_2 {
-    appearance: none;
-    background-color: transparent;
-    border: 2px solid #1A1A1A;
-    border-radius: 15px;
-    box-sizing: border-box;
-    color: #3B3B3B;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: normal;
-    margin: 0;
-    min-width: 0;
-    outline: none;
-    padding: 2% 20px;
-    text-align: center;
-    text-decoration: none;
-    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    will-change: transform;
-    height: 10%;
-  }
-
-  .button-28_2:disabled {
-    pointer-events: none;
-  }
-
-  .button-28_2:hover {
-    color: #fff;
-    background-color: #1A1A1A;
-    transform: translateY(-2px);
-  }
-
-  .button-28_2:active {
-    box-shadow: none;
-    transform: translateY(0);
-  }
-</style>
-
-<form action="{{ url_for('catalog.filter_laptops') }}" method="POST"{% if brand %} onsubmit="return validateCheckbox_brand(event)"{% endif %}>
+<form onsubmit="return false;">
     <p style="font-size: 18px; font-weight: bold;">ยี่ห้อ (Brand)</p>
     {% for brand_value, brand_label in [('Acer', 'Acer'), ('Apple', 'Apple'), ('Asus', 'Asus'), ('Dell', 'Dell'), ('Hp', 'Hp'), ('Lenovo', 'Lenovo'), ('Msi', 'MSI')] %}
     <label style="font-size: 16px;" class="container">{{ brand_label }}
@@ -97,25 +12,22 @@
         <span class="checkmark"></span>
     </label>
     {% endfor %}
-
-    <button class="button-28" type="submit">กรองยี่ห้อ</button>
 </form>
 
 <br>
 
-<p style="font-size: 18px; font-weight: bold;">ราคา</p>
-<form action="{% if filter_slug %}{{ url_for('catalog.filter_laptops_by_price', brand_slug=filter_slug) }}{% else %}{{ url_for('catalog.filter_laptops_by_price') }}{% endif %}" method="POST">
+<form onsubmit="return false;">
+    <p style="font-size: 18px; font-weight: bold;">ราคา</p>
     <p>
-        <input type="text" name="min_price" class="third-input" style="font-size: 14px; color: #141719;" required>
+        <input type="text" name="min_price" class="third-input" style="font-size: 14px; color: #141719;" placeholder="ต่ำสุด">
         ฿ -
-        <input type="text" name="max_price" class="third-input" style="font-size: 14px; color: #141719;" required> ฿
+        <input type="text" name="max_price" class="third-input" style="font-size: 14px; color: #141719;" placeholder="สูงสุด"> ฿
     </p>
-    <button class="button-28" type="submit">กรองราคา</button>
 </form>
 
 <br>
 
-<form action="{% if filter_slug %}{{ url_for('catalog.filter_laptops_by_ram', brand_slug=filter_slug) }}{% else %}{{ url_for('catalog.filter_laptops_by_ram') }}{% endif %}" method="POST"{% if brand %} onsubmit="return validateCheckbox_ram(event)"{% endif %}>
+<form onsubmit="return false;">
     <p style="font-size: 18px; font-weight: bold;">หน่วยความจำชั่วคราว (Ram)</p>
     {% for ram in ['4', '8', '16', '32'] %}
     <label style="font-size: 16px;" class="container">{{ ram }}GB
@@ -123,13 +35,11 @@
         <span class="checkmark"></span>
     </label>
     {% endfor %}
-
-    <button class="button-28" type="submit">กรอง Ram</button>
 </form>
 
 <br>
 
-<form action="{% if filter_slug %}{{ url_for('catalog.filter_laptops_by_hdd', brand_slug=filter_slug) }}{% else %}{{ url_for('catalog.filter_laptops_by_hdd') }}{% endif %}" method="POST"{% if brand %} onsubmit="return validateCheckbox_hdd(event)"{% endif %}>
+<form onsubmit="return false;">
     <p style="font-size: 18px; font-weight: bold;">พื้นที่จัดเก็บข้อมูล (HDD Capacity)</p>
     {% for hdd in ['128 GB', '256 GB', '512 GB', '1 TB'] %}
     <label style="font-size: 16px;" class="container">{{ hdd }}
@@ -137,6 +47,61 @@
         <span class="checkmark"></span>
     </label>
     {% endfor %}
-
-    <button class="button-28_2" type="submit">กรองพื้นที่จัดเก็บข้อมูล</button>
 </form>
+
+</div>
+
+<script>
+    // กรองรายการแล็ปท็อปบนหน้าปัจจุบันแบบ realtime
+    (function () {
+        var panel = document.getElementById('filter-panel');
+        if (!panel) return;
+
+        function checkedValues(name) {
+            var boxes = panel.querySelectorAll('input[name="' + name + '"]:checked');
+            return Array.prototype.map.call(boxes, function (box) { return box.value; });
+        }
+
+        function parsePrice(name) {
+            var raw = panel.querySelector('input[name="' + name + '"]').value.replace(/,/g, '').trim();
+            var value = parseFloat(raw);
+            return isNaN(value) ? null : value;
+        }
+
+        function applyFilter() {
+            var brands = checkedValues('brand');
+            var rams = checkedValues('ram');
+            var hdds = checkedValues('hdd_capacity');
+            var minPrice = parsePrice('min_price');
+            var maxPrice = parsePrice('max_price');
+
+            var items = document.querySelectorAll('.laptop-item');
+            var visibleCount = 0;
+            Array.prototype.forEach.call(items, function (item) {
+                var price = parseFloat(item.dataset.price);
+                var show =
+                    (brands.length === 0 || brands.indexOf(item.dataset.brand) !== -1) &&
+                    (rams.length === 0 || rams.indexOf(item.dataset.ram) !== -1) &&
+                    (hdds.length === 0 || hdds.indexOf(item.dataset.hdd) !== -1) &&
+                    (minPrice === null || price >= minPrice) &&
+                    (maxPrice === null || price <= maxPrice);
+                item.style.display = show ? 'flex' : 'none';
+                if (show) visibleCount++;
+            });
+
+            var emptyMessage = document.getElementById('no-filter-match');
+            if (emptyMessage) {
+                emptyMessage.style.display = (items.length && visibleCount === 0) ? 'block' : 'none';
+            }
+        }
+
+        Array.prototype.forEach.call(
+            panel.querySelectorAll('input[type="checkbox"]'),
+            function (box) { box.addEventListener('change', applyFilter); }
+        );
+        Array.prototype.forEach.call(
+            panel.querySelectorAll('input[name="min_price"], input[name="max_price"]'),
+            function (input) { input.addEventListener('input', applyFilter); }
+        );
+    })();
+</script>
