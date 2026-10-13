@@ -86,25 +86,27 @@ body {
   font-weight: normal;
 }
 
-body, input, textarea {
-  font-family: 'Sukhumvit Set',sans-serif;
-  src: URL('SukhumvitSet-Thin.ttf') format('truetype');
+/* ฟอนต์หลัก Kanit (Google Fonts) — โหลดใน components/css_links.html */
+body, input, textarea, button, select {
+  font-family: 'Kanit', 'Prompt', 'Noto Sans Thai', Tahoma, sans-serif;
+  font-weight: 300;
 }
 
 h1,h2,h3,h4,h5,h6, .navigation a, .filters .filter {
-  font-family: 'Sukhumvit Set', 'Sukhumvit Set', 'Sukhumvit Set';
-  src: URL('SukhumvitSet-Text.ttf') format('truetype');
+  font-family: 'Kanit', 'Prompt', 'Noto Sans Thai', Tahoma, sans-serif;
+  font-weight: 500;
+}
+
+.btn, .btn2, .btn3 {
+  font-family: 'Kanit', 'Prompt', 'Noto Sans Thai', Tahoma, sans-serif;
+  font-weight: 400;
 }
 
 .btn {
-  font-family: 'Sukhumvit Set';
-  src: URL('SukhumvitSet-Text.ttf') format('truetype');
   cursor: pointer;
 }
 
 .btn2 {
-  font-family: 'Sukhumvit Set';
-  src: URL('SukhumvitSet-Text.ttf') format('truetype');
   position: relative;
   display: inline-block;
   margin: .8em 0;
@@ -119,8 +121,6 @@ h1,h2,h3,h4,h5,h6, .navigation a, .filters .filter {
 }
 
 .btn3 {
-  font-family: 'Sukhumvit Set';
-  src: URL('SukhumvitSet-Bold.ttf') format('truetype');
   position: relative;
   display: inline-block;
   margin: .8em 0;
@@ -695,10 +695,23 @@ blockquote p {
 .parallax-section {
   z-index: -1;
   clear: both;
-  background-image: url('home2.jpg');
-  background-repeat: repeat;
-  background-attachment: fixed;
-  background-position: center center;
+  /* ภาพฝั่งซ้ายเป็นสีดำล้วน (วางข้อความ) แล็ปท็อปอยู่ฝั่งขวา — สีพื้นต้องตรงกับสีดำในภาพ */
+  background-color: #000;
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, .75) 0%, rgba(0, 0, 0, .45) 40%, rgba(0, 0, 0, 0) 60%),
+    url('hero-laptop.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right center;
+}
+
+/* จอแคบ: ย่อภาพให้แล็ปท็อปอยู่ด้านล่างใต้ข้อความ และหรี่ลงเล็กน้อย */
+@media (max-width: 768px) {
+  .parallax-section {
+    background-image: linear-gradient(rgba(0, 0, 0, .35), rgba(0, 0, 0, .35)), url('hero-laptop.jpg');
+    background-size: 100% 100%, 230% auto;
+    background-position: center, 82% bottom;
+  }
 }
 
 .parallax2 {
@@ -1393,8 +1406,8 @@ address i {
   margin-bottom: 3px;
   color: #484f58;
   font-size: 1.125em;
-  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
-} 
+  font-family: 'Kanit', 'Prompt', 'Noto Sans Thai', Tahoma, sans-serif;
+}
 
 .phone {
   line-height: 30px;
@@ -1707,8 +1720,7 @@ textarea {
 
 .price_information{
   font-size: 30px; color: #141719; font-weight: bold; text-shadow: 2px 0px #c4c4c4;
-  font-family: 'Sukhumvit Set'!important;
-  src: URL('SukhumvitSet-Bold.ttf') format('truetype')!important;
+  font-family: 'Kanit', 'Prompt', 'Noto Sans Thai', Tahoma, sans-serif !important;
 }
 
 

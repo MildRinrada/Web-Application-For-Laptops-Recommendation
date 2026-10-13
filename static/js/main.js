@@ -97,10 +97,8 @@ $('a[data-rel^=lightcase]').lightcase();
         autoPlay:true,
     });
 
-// Parallax
-$('.parallax-section').parallax({
-          speed : .100
-        });
+// Parallax: ไม่เรียกใช้กับ banner (.parallax-section) แล้ว เพราะปลั๊กอินเขียนทับ
+// background-position ทุกครั้งที่ scroll ทำให้ภาพแล็ปท็อปเลื่อนหลุดตำแหน่ง
 
 // Header Changer on Scroll
 $(function() {
